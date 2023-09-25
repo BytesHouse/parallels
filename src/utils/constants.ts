@@ -1,0 +1,15 @@
+export const linksFooter = [
+    { text: "Search", link: "/" },
+    { text: "Contact Us", link: "/" },
+    { text: "Track Order", link: "/" },
+    { text: "Shipping", link: "/" },
+    { text: "Returns+Exchanges", link: "/" },
+    { text: "Rewards", link: "/" },
+    { text: "Student Discount", link: "/" },
+    { text: "Terms+Conditions", link: "/" },
+    { text: "Privacy Policy", link: "/" },
+    { text: "Our Story", link: "/" },
+    { text: "Careers", link: "/" },
+    { text: "Accessibility", link: "/" },
+    { text: "Cookies Settings", link: "/" },
+]

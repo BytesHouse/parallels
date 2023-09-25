@@ -9,7 +9,7 @@ export const Header = () => {
             <div className="container flex justify-between px-[15px]">
                 <div>US-EN</div>
                 <Logo />
-                <div className="flex gap-[30px]">
+                <div className="flex items-center gap-[30px]">
                     <SearchIcon />
                     <CartIcon />
                     <UserIcon />
