@@ -12,7 +12,7 @@ export const Footer = () => {
             </div>
             <div className="flex justify-between">
                 <ul className="flex-1 flex-wrap flex gap-[20px]">
-                    {linksFooter.map(({ link, text }) => <li className="text-[12px] font-[300]"><Link href={link}>{text}</Link></li>)}
+                    {linksFooter.map(({ link, text }) => <li key={text} className="text-[12px] font-[300]"><Link href={link}>{text}</Link></li>)}
                 </ul>
                 <div className="flex-1 flex justify-end gap-[30px]">
                     <FacebookIcon />
