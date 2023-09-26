@@ -1,7 +1,25 @@
+import { MouseEventHandler } from "react";
+
 interface BtnPrimaryProps {
-    text: string
+  text: string;
+  callback?: MouseEventHandler;
+  styles?: string;
 }
 
-export const BtnPrimary = ({ text }: BtnPrimaryProps) => {
-    return <button className="self-baseline text-[12px] py-[15px] px-[20px] bg-black hover:bg-white text-white hover:text-black transition-all duration-500 uppercase">{text}</button>
-}
+export const BtnPrimary = ({
+  text,
+  callback,
+  styles = "self-baseline py-[15px] px-[20px]",
+}: BtnPrimaryProps) => {
+  return (
+    <button
+      onClick={callback}
+      className={
+        "text-[12px] bg-black hover:bg-white border border-white text-white hover:text-black hover:border-black transition-all duration-500 uppercase " +
+        styles
+      }
+    >
+      {text}
+    </button>
+  );
+};
