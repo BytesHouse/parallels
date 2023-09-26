@@ -1,13 +1,13 @@
 import { Footer } from "@/src/components/Footer/Footer";
 import { Header } from "@/src/components/Header/Header";
-import { ProductList } from "@/src/components/ProductList/ProductList";
+import ProductCard from "@/src/components/ProductCard/ProductCard";
 
 export default function page() {
   return (
     <>
       <Header />
       <main>
-        <ProductList />
+        <ProductCard />
         <Footer />
       </main>
     </>

@@ -1,3 +1,9 @@
-export const LabelSale = () => {
-    return <div className="absolute top-[6px] left-[7px] px-[10px] py-[5px] bg-white text-[12px] font-[500]">SALE</div>
+interface LabelSaleProps {
+    text?: string
+    color?: string
+    isAbsolute?: boolean
+}
+
+export const LabelSale = ({text = "SALE", color="bg-white", isAbsolute = true }:LabelSaleProps) => {
+    return <div className={`${isAbsolute ? "absolute top-[6px] left-[7px] px-[10px] py-[5px]" : "w-max self-center text-white px-[5px]" }  ${color} text-[12px] font-[500]`}>{text}</div>
 }
