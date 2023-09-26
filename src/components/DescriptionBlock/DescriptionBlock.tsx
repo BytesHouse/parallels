@@ -88,7 +88,7 @@ const Sizes = () => {
       <h3 className="text-[14px] font-[400]">Size</h3>
       <div className="grid grid-cols-5 grid-rows-2 gap-[10px]">
         {[...Array(10)].map((item) => (
-          <Size />
+          <Size key={item + " " + 1} />
         ))}
       </div>
       <p className="normal-case	p-[12px] font-[300] text-[#64A0C2] cursor-pointer">
@@ -149,7 +149,7 @@ const Description = () => {
       <ul className="flex flex-col gap-[10px] w-full">
         {descriptionList.map(({ type, value }: IdescriptItem) => {
           return (
-            <li className="flex">
+            <li key={value} className="flex">
               <p className="w-[33%] text-[14px] font-[300] text-[#B3B3B3] normal-case">
                 {type}
               </p>
