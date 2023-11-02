@@ -5,7 +5,7 @@ import { DescriptionBlock } from "../DescriptionBlock/DescriptionBlock";
 
 export default function ProductCard() {
   return (
-    <div className="container mx-auto mb-[50px]">
+    <div className="container px-[15px] md:px-[0] mx-auto mb-[50px]">
       <Breadcrumbs />
       <div className="grid grid-cols-[2fr_410px] gap-[50px]">
         <div className="grid grid-cols-[1fr_1fr] gap-[50px]">

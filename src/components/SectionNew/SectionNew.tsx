@@ -5,10 +5,10 @@ import { ProdCardPrimary } from "../ProdCardPrimary/ProdCardPrimary"
 import { HeadingSection } from "../HeadingSection/HeadingSection"
 
 export const SectionNew = () => {
-    return <section className="container my-[50px] w-full">
+    return <section className="container px-[15px] md:px-[0] my-[50px] w-full">
         <div className="flex flex-col gap-[50px]">
             <HeadingSection text="WHAT'S NEW" />
-            <ul className="grid grid-cols-5 gap-[15px]">
+            <ul className="grid grid-cols-2 md:grid-cols-5 gap-[15px]">
                 <ProdCardPrimary />
                 <ProdCardPrimary />
                 <ProdCardPrimary />

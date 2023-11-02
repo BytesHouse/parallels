@@ -12,6 +12,7 @@ export default function Home() {
     <>
       <Header />
       <main className="flex min-h-screen flex-col items-center justify-between">
+        <p className="absolute"></p>
         <Image src={bg} alt="bg" className="w-screen h-screen" />
         <SectionNew />
         <BestSellers />

@@ -5,7 +5,7 @@ import { FacebookIcon, GoogleIcon, InstagramIcon } from "../SocialIcons/SocialIc
 
 export const Footer = () => {
     return <footer className="py-[50px] w-full bg-[#1D1D1D] text-white">
-        <div className="container mx-auto flex flex-col gap-[50px]">
+        <div className="container px-[15px] md:px-[0] mx-auto flex flex-col gap-[50px]">
             <div className="flex justify-between text-[12px] font-[300]">
                 <FooterLogo />
                 <p>BE FIRST TO KNOW ABOUT RELEASES AND RESTOCKS</p>

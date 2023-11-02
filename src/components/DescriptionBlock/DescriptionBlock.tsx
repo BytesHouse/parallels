@@ -4,8 +4,11 @@ import { LabelSale } from "../LabelSale/LabelSale";
 import { IconDecrement } from "../IconDecrement/IconDecrement";
 import { IconIncrement } from "../IconIncrement/IconIncrement";
 import { BtnPrimary } from "../BtnPrimary/BtnPrimary";
+import { ProductsService } from "@/src/api/services/products.service";
 
 export const DescriptionBlock = () => {
+  const tmp = ProductsService.getProducts();
+  console.log(tmp);
   return (
     <div className="uppercase max-w-[410px] flex flex-col gap-[30px]">
       <p className="text-[14px] font-[400]">New season</p>
@@ -73,7 +76,7 @@ const Colors = () => {
     <div>
       <h3 className="text-[14px] font-[400]">colors</h3>
       <ul className="flex gap-[5px]">
-        <li className="w-[30px] h-[30px] bg-white rounded-full"></li>
+        <li className="w-[30px] h-[30px] bg-white rounded-full border border-gray-300"></li>
         <li className="w-[30px] h-[30px] bg-black rounded-full"></li>
         <li className="w-[30px] h-[30px] bg-[#656B73] rounded-full"></li>
         <li className="w-[30px] h-[30px] bg-[#468578] rounded-full"></li>

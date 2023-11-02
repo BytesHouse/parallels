@@ -1,3 +1,5 @@
+export const BASE_URL = "https://parallels.cyclic.cloud/store"
+
 export const linksFooter = [
     { text: "Search", link: "/" },
     { text: "Contact Us", link: "/" },

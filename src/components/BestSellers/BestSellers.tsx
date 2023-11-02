@@ -4,7 +4,7 @@ import { ProdCardSecondary } from "../ProdCardSecondary/ProdCardSecondary"
 export const BestSellers = () => {
     return <section className="bg-[#F2F2F2] w-full py-[50px] flex flex-col gap-[50px]">
         <HeadingSection text="BEST SELLERS" />
-        <ul className="grid grid-cols-5 container mx-auto gap-[30px]">
+        <ul className="grid grid-cols-2 md:grid-cols-5 px-[15px] md:px-[0] container mx-auto gap-[30px]">
             <ProdCardSecondary />
             <ProdCardSecondary />
             <ProdCardSecondary />
