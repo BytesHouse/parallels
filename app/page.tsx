@@ -14,7 +14,7 @@ export default function Home({product}: any) {
       <Header />
       <main className="flex min-h-screen flex-col items-center justify-between">
         <p className="absolute"></p>
-        <Image src={bg} alt="bg" className="w-screen h-screen" />
+        <Image src={bg} alt="bg" className="w-screen md:h-screen" />
         <SectionNew />
         <BestSellers />
         <Advantages />
