@@ -7,7 +7,8 @@ import { Advantages } from "@/src/components/Advantages/Advantages";
 import { FutureSection } from "@/src/components/FutureSection/FutureSection";
 import { Footer } from "@/src/components/Footer/Footer";
 
-export default function Home() {
+export default function Home({product}: any) {
+ 
   return (
     <>
       <Header />

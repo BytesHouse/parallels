@@ -6,20 +6,21 @@ import Link from "next/link";
 
 interface ProdCardSecondaryProps {
   link?: string;
+  title?: string
 }
 
-export const ProdCardSecondary = ({ link }: ProdCardSecondaryProps) => {
+export const ProdCardSecondary = ({ link, title = 'Contrast Bootcut Sweatpants' }: ProdCardSecondaryProps) => {
   return (
     <li className="uppercase flex flex-col gap-[15px]">
       <Link href={"/product"}>
         <div className="relative">
-          <Image src={mock} alt="mock" />
+          <Image className="w-full h-full" width={100} height={100} src={link || mock} alt="mock" />
           <LabelSale />
         </div>
         <div className="flex flex-col gap-[10px]">
           <p className="text-[12px] font-[300]">New season</p>
           <p className="text-[16px] font-[500]">
-            Contrast Bootcut Sweatpants{" "}
+            <p>{title}</p>
             <span className="text-[#B3B3B3]">GRAY</span>
           </p>
         </div>

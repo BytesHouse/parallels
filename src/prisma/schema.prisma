@@ -1,0 +1,101 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("POSTGRES_PRISMA_URL") 
+  directUrl = env("POSTGRES_URL_NON_POOLING") 
+}
+
+model Post {
+  id        String  @id @default(cuid())
+  title     String
+  content   String?
+  published Boolean @default(false)
+  user    User?@relation(fields:[userId], references:[id])
+  userId  String?
+  }
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String  @unique
+  type               String
+  provider           String
+  providerAccountId  String  @map("provider_account_id")
+  refresh_token      String?
+  access_token       String?
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?
+  session_state      String?
+  oauth_token_secret String?
+  oauth_token        String?
+  user User @relation(fields:[userId] , references:[id], onDelete: Cascade)
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique@map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields:[userId], references:[id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  id         Int      @id @default(autoincrement())
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model User {
+  id            String       @default(cuid()) @id
+  userId   String   @unique
+  username String   @unique
+  email    String   @unique
+  password String
+  address  String
+  phone    String
+  createdAt     DateTime  @default(now()) @map(name: "created_at")
+  updatedAt     DateTime  @updatedAt @map(name: "updated_at")
+  posts         Post[]
+  orders   Order[]
+  sessions      Session[]
+  account  Account[]
+  @@unique([userId, id])
+  @@map(name: "users")
+}
+
+model Product {
+  id        Int      @id @default(autoincrement())
+  name      String
+  description String
+  price     Float
+  count     Int
+  orders      Order[]    @relation("OrderProducts")
+  category  Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+  imageUrl  String
+}
+
+model Category {
+  id        Int      @id @default(autoincrement())
+  name      String
+  products  Product[]
+}
+
+model Order {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  products  Product[] @relation("OrderProducts")
+  orderDate DateTime
+  address   String
+  status    String
+  totalPrice Float
+}
