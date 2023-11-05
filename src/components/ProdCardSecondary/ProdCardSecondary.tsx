@@ -6,13 +6,15 @@ import Link from "next/link";
 
 interface ProdCardSecondaryProps {
   link?: string;
-  title?: string
+  title?: string;
+  price?: number;
+  prodId?: string | number
 }
 
-export const ProdCardSecondary = ({ link, title = 'Contrast Bootcut Sweatpants' }: ProdCardSecondaryProps) => {
+export const ProdCardSecondary = ({ link, title = 'Contrast Bootcut Sweatpants', price, prodId }: ProdCardSecondaryProps) => {
   return (
     <li className="uppercase flex flex-col gap-[15px]">
-      <Link href={"/product"}>
+      <Link href={`/product/${prodId}`}>
         <div className="relative">
           <Image className="w-full h-full" width={100} height={100} src={link || mock} alt="mock" />
           <LabelSale />
@@ -21,14 +23,14 @@ export const ProdCardSecondary = ({ link, title = 'Contrast Bootcut Sweatpants' 
           <p className="text-[12px] font-[300]">New season</p>
           <p className="text-[16px] font-[500]">
             <p>{title}</p>
-            <span className="text-[#B3B3B3]">GRAY</span>
+            {/* <span className="text-[#B3B3B3]">GRAY</span> */}
           </p>
         </div>
         <div className="flex justify-between">
           <BtnPrimary text="Shop now" />
           <div className="flex flex-col items-end">
-            <p className="text-[16px] text-[#B3B3B3] line-through">$742</p>
-            <p className="text-[24px]">$742</p>
+            {/* <p className="text-[16px] text-[#B3B3B3] line-through">$742</p> */}
+            <p className="text-[24px]">₪{price}</p>
           </div>
         </div>
       </Link>

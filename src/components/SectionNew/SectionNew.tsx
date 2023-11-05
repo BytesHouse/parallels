@@ -3,17 +3,20 @@ import { NavBtn } from "../NavBtn/NavBtn"
 import { BtnPrimary } from "../BtnPrimary/BtnPrimary"
 import { ProdCardPrimary } from "../ProdCardPrimary/ProdCardPrimary"
 import { HeadingSection } from "../HeadingSection/HeadingSection"
+import prisma from "@/lib/prisma"
 
-export const SectionNew = () => {
+async function getData() {
+    const res = await prisma.product.findMany()
+    return res
+  }
+
+export const SectionNew = async () => {
+    const res = await getData()
     return <section className="container px-[15px] md:px-[0] my-[50px] w-full">
         <div className="flex flex-col gap-[50px]">
             <HeadingSection text="WHAT'S NEW" />
             <ul className="grid grid-cols-2 md:grid-cols-5 gap-[15px]">
-                <ProdCardPrimary />
-                <ProdCardPrimary />
-                <ProdCardPrimary />
-                <ProdCardPrimary />
-                <ProdCardPrimary />
+                {res.map(item => <ProdCardPrimary key={item.name} image={item.imageUrl[1]} name={item.name} id={item.id} />)}
             </ul>
         </div>
     </section>

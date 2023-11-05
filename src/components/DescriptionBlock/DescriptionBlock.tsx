@@ -4,19 +4,17 @@ import { LabelSale } from "../LabelSale/LabelSale";
 import { IconDecrement } from "../IconDecrement/IconDecrement";
 import { IconIncrement } from "../IconIncrement/IconIncrement";
 import { BtnPrimary } from "../BtnPrimary/BtnPrimary";
-import { ProductsService } from "@/src/api/services/products.service";
 
-export const DescriptionBlock = () => {
-  const tmp = ProductsService.getProducts();
-  console.log(tmp);
+export const DescriptionBlock = ({item}: any) => {
+  const {price, name, id, count} = item;
   return (
     <div className="uppercase max-w-[410px] flex flex-col gap-[30px]">
       <p className="text-[14px] font-[400]">New season</p>
-      <h1>Contrast Bootcut Sweatpants</h1>
-      <Price />
-      <Counter />
+      <h1>{name}</h1>
+      <Price price={price} />
+      <Counter max={count} />
       <Colors />
-      <Sizes />
+      <Sizes type={"shirts"} />
       <BuyNowBlock />
       <Description />
       <ReviewsList />
@@ -24,23 +22,25 @@ export const DescriptionBlock = () => {
   );
 };
 
-const Price = () => {
+const Price = ({price}: {price: string}) => {
   return (
     <div>
       <div className="relative flex items-center">
-        <p className="text-[24px] font-[500] text-[#EA0022] leading-3">$223</p>
-        <LabelSale isAbsolute={false} color="bg-[#EA0022]" text="-70%" />
+        {/* <p className="text-[24px] font-[500] text-[#EA0022] leading-3">₪223</p> */}
+        {/* <LabelSale isAbsolute={false} color="bg-[#EA0022]" text="-70%" /> */}
       </div>
-      <p>$745</p>
+      <p>₪{price}</p>
     </div>
   );
 };
 
 // Counter
-const Counter = () => {
+const Counter = ({max}: {max: number}) => {
   const [count, setCount] = useState(1);
   const hangleIncrement = () => {
-    setCount(count + 1);
+    if(count < max){
+      setCount(count + 1);
+    }
   };
   const hangleDecrement = () => {
     count && setCount(count - 1);
@@ -78,20 +78,33 @@ const Colors = () => {
       <ul className="flex gap-[5px]">
         <li className="w-[30px] h-[30px] bg-white rounded-full border border-gray-300"></li>
         <li className="w-[30px] h-[30px] bg-black rounded-full"></li>
-        <li className="w-[30px] h-[30px] bg-[#656B73] rounded-full"></li>
-        <li className="w-[30px] h-[30px] bg-[#468578] rounded-full"></li>
+        {/* <li className="w-[30px] h-[30px] bg-[#656B73] rounded-full"></li> */}
+        {/* <li className="w-[30px] h-[30px] bg-[#468578] rounded-full"></li> */}
       </ul>
     </div>
   );
 };
 
-const Sizes = () => {
+const shirtsArr = [{size: '', sizeL: "XS"},
+{size: '', sizeL: "S"},
+{size: '', sizeL: "M"},
+{size: '', sizeL: "L"},
+{size: '', sizeL: "XL"}
+];
+const shortsArr = [{size: '', sizeL: "S"},
+{size: '', sizeL: "M"},
+{size: '', sizeL: "L"},
+{size: '', sizeL: "XL"}
+];
+
+const Sizes = ({type} : {type: string}) => {
+  const tmp = type === 'shirts' ? shirtsArr : shortsArr
   return (
     <div>
       <h3 className="text-[14px] font-[400]">Size</h3>
       <div className="grid grid-cols-5 grid-rows-2 gap-[10px]">
-        {[...Array(10)].map((item) => (
-          <Size key={item + " " + 1} />
+        {tmp.map((item) => (
+          <Size key={item + " " + 1} size={item.size} sizeL={item.sizeL} />
         ))}
       </div>
       <p className="normal-case	p-[12px] font-[300] text-[#64A0C2] cursor-pointer">
@@ -100,11 +113,11 @@ const Sizes = () => {
     </div>
   );
 };
-const Size = () => {
+const Size = ({size, sizeL}: {size: string, sizeL: string}) => {
   return (
     <div className="p-[10px] text-center border border-[#F2F2F2] hover:border-[#1D1D1D] transition-all cursor-pointer">
-      <p className="text-[14px] font-[400]">40-42</p>
-      <p className="text-[12px] font-[300] text-[#B3B3B3]">XS</p>
+      <p className="text-[14px] font-[400]">{size}</p>
+      <p className="text-[12px] font-[300] text-[#B3B3B3]">{sizeL}</p>
     </div>
   );
 };

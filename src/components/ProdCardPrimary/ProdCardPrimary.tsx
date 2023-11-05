@@ -1,14 +1,15 @@
 import Image from 'next/image'
 import mock from '../../../public/assets/images/mock-1.png'
 import { BtnPrimary } from '../BtnPrimary/BtnPrimary'
+import Link from 'next/link'
 
-export const ProdCardPrimary = () => {
+export const ProdCardPrimary = ({image, name, id}: {image: string, name: string, id: number}) => {
     return <li className="uppercase flex flex-col gap-[15px]">
-        <Image src={mock} alt="mock" />
+        <Image width={1000} height={1000} src={image || mock} alt="mock" />
         <div className="flex flex-col gap-[10px]">
             <p className="text-[12px] font-[300]">10+ new styles</p>
-            <p className="text-[16px] font-[500]">new graphic tees</p>
+            <p className="text-[16px] font-[500]">{name}</p>
         </div>
-        <BtnPrimary text="watch now" />
+        <Link className='self-baseline' href={`/product/${+id}`}><BtnPrimary text="watch now" /></Link>
     </li>
 }

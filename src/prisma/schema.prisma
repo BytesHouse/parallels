@@ -80,7 +80,7 @@ model Product {
   orders      Order[]    @relation("OrderProducts")
   category  Category @relation(fields: [categoryId], references: [id])
   categoryId Int
-  imageUrl  String
+  imageUrl  String[]
 }
 
 model Category {
