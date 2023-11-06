@@ -44,6 +44,28 @@
   font-weight: 100;
 }
 
+.small {
+  fill: white;
+}
+.heavy {
+  fill: white
+}
+
+.Rrrrr {
+  fill: white
+}
+@media (max-width: 768px){
+  .small {
+    fill: black;
+  }
+  .heavy {
+    fill: black;
+  }
+  
+  .Rrrrr {
+    fill: black;
+  }
+}
 :root {
   
 }

@@ -124,7 +124,7 @@ const Size = ({size, sizeL}: {size: string, sizeL: string}) => {
 //Buy Now
 const BuyNowBlock = () => {
   return (
-    <div className="flex gap-[10px]">
+    <div className="flex gap-[10px] sticky bottom-5">
       <BtnPrimary styles="w-full py-[15px]" text={"Buy now"} />
       <Favorites />
     </div>

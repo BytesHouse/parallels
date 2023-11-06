@@ -6,6 +6,7 @@ import { BestSellers } from "@/src/components/BestSellers/BestSellers";
 import { Advantages } from "@/src/components/Advantages/Advantages";
 import { FutureSection } from "@/src/components/FutureSection/FutureSection";
 import { Footer } from "@/src/components/Footer/Footer";
+import TextReveal from "@/src/components/TextReveal/TextReveal";
 
 export default function Home({product}: any) {
  
@@ -14,6 +15,7 @@ export default function Home({product}: any) {
       <Header />
       <main className="flex min-h-screen flex-col items-center justify-between">
         <p className="absolute"></p>
+        <TextReveal />
         <Image src={bg} alt="bg" className="w-screen md:h-screen" />
         <SectionNew />
         <BestSellers />
