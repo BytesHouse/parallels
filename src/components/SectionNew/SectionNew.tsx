@@ -12,12 +12,15 @@ async function getData() {
 
 export const SectionNew = async () => {
     const res = await getData()
-    return <section className="container px-[15px] md:px-[0] my-[50px] w-full">
-        <div className="flex flex-col gap-[50px]">
+    return <section className="container overflow-x-scroll md:px-[20px]  my-[50px] w-full">
+        <div className="flex flex-col gap-[50px] ">
             <HeadingSection text="WHAT'S NEW" />
-            <ul className="grid grid-cols-2 md:grid-cols-5 gap-[15px]">
+        <div className="overflow-x-scroll customScroll">
+
+            <ul className="w-max flex px-[15px] md:px-[0] container mx-auto gap-[30px]">
                 {res.map(item => <ProdCardPrimary key={item.name} image={item.imageUrl[1]} name={item.name} id={item.id} />)}
             </ul>
+            </div>
         </div>
     </section>
 }

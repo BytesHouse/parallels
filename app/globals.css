@@ -3,76 +3,78 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Onest';
-  src: url('../public/assets/Onest/Onest-Black.ttf') format('truetype');
+  font-family: "Onest";
+  src: url("../public/assets/Onest/Onest-Black.ttf") format("truetype");
   font-weight: 900;
 }
 
 @font-face {
-  font-family: 'Onest';
-  src: url('../public/assets/Onest/Onest-Bold.ttf') format('truetype');
+  font-family: "Onest";
+  src: url("../public/assets/Onest/Onest-Bold.ttf") format("truetype");
   font-weight: 700;
 }
 
 @font-face {
-  font-family: 'Onest';
-  src: url('../public/assets/Onest/Onest-ExtraBold.ttf') format('truetype');
+  font-family: "Onest";
+  src: url("../public/assets/Onest/Onest-ExtraBold.ttf") format("truetype");
   font-weight: 800;
 }
 
 @font-face {
-  font-family: 'Onest';
-  src: url('../public/assets/Onest/Onest-Light.ttf') format('truetype');
+  font-family: "Onest";
+  src: url("../public/assets/Onest/Onest-Light.ttf") format("truetype");
   font-weight: 300;
 }
 
 @font-face {
-  font-family: 'Onest';
-  src: url('../public/assets/Onest/Onest-Medium.ttf') format('truetype');
+  font-family: "Onest";
+  src: url("../public/assets/Onest/Onest-Medium.ttf") format("truetype");
   font-weight: 500;
 }
 
 @font-face {
-  font-family: 'Onest';
-  src: url('../public/assets/Onest/Onest-Regular.ttf') format('truetype');
+  font-family: "Onest";
+  src: url("../public/assets/Onest/Onest-Regular.ttf") format("truetype");
   font-weight: 400;
 }
 
 @font-face {
-  font-family: 'Onest';
-  src: url('../public/assets/Onest/Onest-Thin.ttf') format('truetype');
+  font-family: "Onest";
+  src: url("../public/assets/Onest/Onest-Thin.ttf") format("truetype");
   font-weight: 100;
+}
+
+.overflow-x-scroll::-webkit-scrollbar {
+  display: none;
 }
 
 .small {
   fill: white;
 }
 .heavy {
-  fill: white
+  fill: white;
 }
 
 .Rrrrr {
-  fill: white
+  fill: white;
 }
-@media (max-width: 768px){
+@media (max-width: 768px) {
   .small {
     fill: black;
   }
   .heavy {
     fill: black;
   }
-  
+
   .Rrrrr {
     fill: black;
   }
 }
 :root {
-  
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-   
   }
 }
 

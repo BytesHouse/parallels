@@ -7,7 +7,7 @@ interface AdvantagesItemProps {
 }
 
 export const AdvantagesItem = ({ text, icon }: AdvantagesItemProps) => {
-    return <div className="border p-[30px] flex items-center gap-[20px]">
+    return <div className="border p-[30px] flex items-center gap-[20px] text-[12px]">
         {icon}
         <p>{text}</p>
     </div>
