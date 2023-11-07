@@ -1,19 +1,19 @@
 export const BASE_URL = "https://parallels.cyclic.cloud/store"
 
 export const linksFooter = [
-    { text: "Search", link: "/" },
-    { text: "Contact Us", link: "/" },
-    { text: "Track Order", link: "/" },
-    { text: "Shipping", link: "/" },
-    { text: "Returns+Exchanges", link: "/" },
-    { text: "Rewards", link: "/" },
-    { text: "Student Discount", link: "/" },
-    { text: "Terms+Conditions", link: "/" },
     { text: "Privacy Policy", link: "/" },
-    { text: "Our Story", link: "/" },
-    { text: "Careers", link: "/" },
+    { text: "Terms+Conditions", link: "/" },
     { text: "Accessibility", link: "/" },
-    { text: "Cookies Settings", link: "/" },
+    { text: "Contact Us", link: "/contacts" },
+    { text: "Returns+Exchanges", link: "/" },
+    { text: "Our Story", link: "/" },
+    // { text: "Search", link: "/" },
+    // { text: "Track Order", link: "/" },
+    // { text: "Shipping", link: "/" },
+    // { text: "Rewards", link: "/" },
+    // { text: "Student Discount", link: "/" },
+    // { text: "Careers", link: "/" },
+    // { text: "Cookies Settings", link: "/" },
 ]
 
 export const navItems = [
