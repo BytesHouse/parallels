@@ -5,11 +5,11 @@ interface HeadingSection {
 }
 
 export const HeadingSection = ({ text }: HeadingSection) => {
-    return <div className="flex items-center justify-between px-[15px] container m-auto">
+    return <div className="flex items-center justify-between container m-auto px-[15px] md:px-[0]">
         <p className="text-[24px] font-[300]">{text}</p>
-        {/* <div className="flex gap-[10px]">
+        <div className="flex gap-[10px]">
             <NavBtn isLeft />
             <NavBtn />
-        </div> */}
+        </div>
     </div>
 }

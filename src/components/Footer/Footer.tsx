@@ -4,7 +4,7 @@ import { linksFooter } from "@/src/utils/constants"
 import { FacebookIcon, GoogleIcon, InstagramIcon } from "../SocialIcons/SocialIcons"
 
 export const Footer = () => {
-    return <footer className="py-[50px] w-full bg-[#1D1D1D] text-white">
+    return <footer className="py-[50px] px-[75px] w-full bg-[#1D1D1D] text-white">
         <div className="container px-[15px] md:px-[0] mx-auto flex flex-col gap-[50px]">
             <div className="flex justify-between text-[12px] font-[300]">
                 <FooterLogo />

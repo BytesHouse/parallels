@@ -13,10 +13,10 @@ interface ProdCardSecondaryProps {
 
 export const ProdCardSecondary = ({ link, title = 'Contrast Bootcut Sweatpants', price, prodId }: ProdCardSecondaryProps) => {
   return (
-    <li className="uppercase flex flex-col gap-[15px]">
+    <li className="uppercase flex flex-col max-w-[300px] gap-[15px]">
       <Link href={`/product/${prodId}`}>
         <div className="relative">
-          <Image className="w-full h-full" width={100} height={100} src={link || mock} alt="mock" />
+          <Image className="w-full h-full" width={1000} height={1000} src={link || mock} alt="mock" />
           <LabelSale />
         </div>
         <div className="flex flex-col gap-[10px]">
