@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 export default function page() {
-  const [state, setState] = useState(2);
+  const [state, setState] = useState(1);
   function tabsSwitcher() {
     switch (state) {
       case 1:
@@ -27,49 +27,78 @@ export default function page() {
         <div className="grid grid-cols-[1fr_3fr] px-[20px]">
           <aside className="border p-[30px]">
             <ul>
-              <li onClick={() => changeTab(1)} className={`${state === 1 ? "font-bold" : '' } px-[20px] pb-[15px] cursor-pointer`}>
+              <li
+                onClick={() => changeTab(1)}
+                className={`${
+                  state === 1 ? "font-bold" : ""
+                } px-[20px] pb-[15px] cursor-pointer`}
+              >
                 Category
               </li>
-              <li onClick={() => changeTab(2)} className="px-[20px] pb-[15px] cursor-pointer">
+              <li
+                onClick={() => changeTab(2)}
+                className={`${
+                  state === 2 ? "font-bold" : ""
+                } px-[20px] pb-[15px] cursor-pointer`}
+              >
                 Product
               </li>
-              <li onClick={() => changeTab(3)} className="px-[20px] pb-[15px] cursor-pointer">
+              <li
+                onClick={() => changeTab(3)}
+                className={`${
+                  state === 3 ? "font-bold" : ""
+                } px-[20px] pb-[15px] cursor-pointer`}
+              >
                 User
               </li>
-              <li onClick={() => changeTab(4)} className="px-[20px] pb-[15px] cursor-pointer">
+              <li
+                onClick={() => changeTab(4)}
+                className={`${
+                  state === 4 ? "font-bold" : ""
+                } px-[20px] pb-[15px] cursor-pointer`}
+              >
                 Order
               </li>
-              <li onClick={() => changeTab(5)} className="px-[20px] pb-[15px] cursor-pointer">
+              <li
+                onClick={() => changeTab(5)}
+                className={`${
+                  state === 5 ? "font-bold" : ""
+                } px-[20px] pb-[15px] cursor-pointer`}
+              >
                 Post
               </li>
             </ul>
           </aside>
           <section>
             <div className="border p-[15px] w-[100%] h-[100%]">
+              <button className="border px-[10px] py-[2px] bg-green-700 text-white rounded-full float-right ml-[15px]">
+                +
+              </button>
               {tabsSwitcher()}
             </div>
           </section>
         </div>
-        <div className="flex items-center absolute top-0 right-0">
-              <form className="px-[20px] py-[30px] border p-[10px] flex flex-col gap-[30px] bg-[#F2F2F2]">
-                <input
-                  placeholder=""
-                  type="text"
-                  className="py-[5px]  bg-transparent border-b focus:bg-white outline-0"
-                />
-                <select>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                </select>
-                <input
-                  value="CONFIRM"
-                  className="bg-[#1D1D1D] text-white py-[15px]"
-                  type="submit"
-                />
-              </form>
-            </div>
+        <div className="flex z-10 items-center absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[50%]">
+          <form className="px-[20px] py-[30px] border p-[10px] flex flex-col gap-[30px] bg-[#F2F2F2]">
+            <input
+              placeholder=""
+              type="text"
+              className="py-[5px]  bg-transparent border-b focus:bg-white outline-0"
+            />
+            <select>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+            <input
+              value="CONFIRM"
+              className="bg-[#1D1D1D] text-white py-[15px]"
+              type="submit"
+            />
+          </form>
+        </div>
+        <div className="absolute z-0 top-0 right-0 bottom-0 left-0 bg-black"></div>
       </main>
     </>
   );
