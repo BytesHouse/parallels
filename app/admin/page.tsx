@@ -22,24 +22,24 @@ export default function page() {
   }
   return (
     <>
-      <main className="max-width-[1180px] ">
-        Admin Page
-        <div className="grid grid-cols-[1fr_3fr] ">
-          <aside className="border p-[30px]  ">
+      <main className="max-width-[1180px] h-full relative">
+        <h1 className="text-center py-[10px] text-[32px]">Admin Page</h1>
+        <div className="grid grid-cols-[1fr_3fr] px-[20px]">
+          <aside className="border p-[30px]">
             <ul>
-              <li onClick={() => changeTab(1)} className="px-[20px] pb-[15px]">
+              <li onClick={() => changeTab(1)} className={`${state === 1 ? "font-bold" : '' } px-[20px] pb-[15px] cursor-pointer`}>
                 Category
               </li>
-              <li onClick={() => changeTab(2)} className="px-[20px] pb-[15px]">
+              <li onClick={() => changeTab(2)} className="px-[20px] pb-[15px] cursor-pointer">
                 Product
               </li>
-              <li onClick={() => changeTab(3)} className="px-[20px] pb-[15px]">
+              <li onClick={() => changeTab(3)} className="px-[20px] pb-[15px] cursor-pointer">
                 User
               </li>
-              <li onClick={() => changeTab(4)} className="px-[20px] pb-[15px]">
+              <li onClick={() => changeTab(4)} className="px-[20px] pb-[15px] cursor-pointer">
                 Order
               </li>
-              <li onClick={() => changeTab(5)} className="px-[20px] pb-[15px]">
+              <li onClick={() => changeTab(5)} className="px-[20px] pb-[15px] cursor-pointer">
                 Post
               </li>
             </ul>
@@ -48,7 +48,9 @@ export default function page() {
             <div className="border p-[15px] w-[100%] h-[100%]">
               {tabsSwitcher()}
             </div>
-            <div className="w-[500px] h-[700px] flex items-center">
+          </section>
+        </div>
+        <div className="flex items-center absolute top-0 right-0">
               <form className="px-[20px] py-[30px] border p-[10px] flex flex-col gap-[30px] bg-[#F2F2F2]">
                 <input
                   placeholder=""
@@ -68,8 +70,6 @@ export default function page() {
                 />
               </form>
             </div>
-          </section>
-        </div>
       </main>
     </>
   );
