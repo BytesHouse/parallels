@@ -22,7 +22,7 @@ export const ProdCardSecondary = ({ link, title = 'Contrast Bootcut Sweatpants',
         <div className="flex flex-col gap-[10px]">
           <p className="text-[12px] font-[300]">New season</p>
           <p className="text-[16px] font-[500]">
-            <p>{title}</p>
+            {title}
             {/* <span className="text-[#B3B3B3]">GRAY</span> */}
           </p>
         </div>

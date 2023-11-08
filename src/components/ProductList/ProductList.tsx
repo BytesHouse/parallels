@@ -1,7 +1,14 @@
+import prisma from "@/lib/prisma"
 import { FillterDropdown } from "../FillterDropdown/FillterDropdown"
 import { FillteredList } from "../FillteredList/FillteredList"
 
-export const ProductList = () => {
+async function getData() {
+    const res = await prisma.product.findMany()
+    return res
+  }
+
+export const ProductList = async () => {
+    const res = await getData()
     return <section className="container px-[15px] md:px-[0] mx-auto pt-[20px] pb-[50px] flex flex-col">
         <div className="">Breadcrumps</div>
         <div className="grid grid-cols-1 gap-[20px] md:gap-0 md:grid-cols-[1fr_3fr] pt-[30px]">
@@ -12,7 +19,7 @@ export const ProductList = () => {
                 <FillterDropdown text={"Denim fit"} array={[]} />
                 <FillterDropdown text={"Size"} array={[]} />
             </div>
-            <FillteredList />
+            <FillteredList response={res} />
         </div>
     </section>
 }

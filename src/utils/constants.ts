@@ -1,8 +1,8 @@
 export const BASE_URL = "https://parallels.cyclic.cloud/store"
 
 export const linksFooter = [
-    { text: "Privacy Policy", link: "/" },
-    { text: "Terms+Conditions", link: "/" },
+    { text: "Privacy Policy", link: "/privacy" },
+    { text: "Terms+Conditions", link: "/terms" },
     { text: "Accessibility", link: "/" },
     { text: "Contact Us", link: "/contacts" },
     { text: "Returns+Exchanges", link: "/" },
