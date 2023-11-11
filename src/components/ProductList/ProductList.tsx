@@ -1,22 +1,26 @@
 import prisma from "@/lib/prisma"
 import { FillterDropdown } from "../FillterDropdown/FillterDropdown"
 import { FillteredList } from "../FillteredList/FillteredList"
-import { useRouter } from 'next/router'
+import { NextPageContext } from "next";
+import { headers } from "next/headers";
 
-async function getData(id: number) {
+async function getDataByName(name?: string) {
     const res = await prisma.product.findMany({
         where: {
           category: {
-            id,
+            name,
           },
         },
       })
     return res
   }
 
-export const ProductList = async () => {
-    const router = useRouter();
-    const res = await getData(2);
+export const ProductList = async (props: any) => {
+    const heads = headers();
+    const pathname = heads.get('next-url');
+    
+    const res = await getDataByName(pathname?.split('/')[1]);
+    console.log(res)
     return <section className="container px-[15px] md:px-[0] mx-auto pt-[20px] pb-[50px] flex flex-col">
         <div className="text-[24px] font-medium">Filters</div>
         <div className="grid grid-cols-1 gap-[20px] md:gap-0 md:grid-cols-[1fr_3fr] pt-[30px]">
@@ -31,3 +35,12 @@ export const ProductList = async () => {
         </div>
     </section>
 }
+export function getServerSideProps(context: NextPageContext) {
+    const route = context.req!.url;
+    console.log('eep')
+    return {
+      props: {
+        route,
+      },
+    };
+  }
