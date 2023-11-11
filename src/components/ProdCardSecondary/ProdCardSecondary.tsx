@@ -17,7 +17,7 @@ export const ProdCardSecondary = ({ link, title = 'Contrast Bootcut Sweatpants',
       <Link href={`/product/${prodId}`}>
         <div className="relative">
           <Image className="w-full h-full" width={1000} height={1000} src={link || mock} alt="mock" />
-          <LabelSale />
+          {/* <LabelSale /> */}
         </div>
         <div className="flex flex-col gap-[10px]">
           <p className="text-[12px] font-[300]">New season</p>

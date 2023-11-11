@@ -1,8 +1,10 @@
-"use client";
+/* eslint-disable react-hooks/rules-of-hooks */
+'use client';
 import { useState } from "react";
 
 export default function page() {
   const [state, setState] = useState(1);
+  const [showPopup, setShowPopup] = useState(false);
   function tabsSwitcher() {
     switch (state) {
       case 1:
@@ -20,11 +22,15 @@ export default function page() {
   function changeTab(a: number) {
     setState(a);
   }
+  const handleClick = (e: any) => {
+    e.preventDefault();
+    setShowPopup(false);
+  }
   return (
     <>
-      <main className="max-width-[1180px] h-full relative">
+      <main className="max-width-[1180px] h-screen relative">
         <h1 className="text-center py-[10px] text-[32px]">Admin Page</h1>
-        <div className="grid grid-cols-[1fr_3fr] px-[20px]">
+        <div className="grid grid-cols-[1fr_3fr] px-[20px] h-[85%] gap-[5px]">
           <aside className="border p-[30px]">
             <ul>
               <li
@@ -71,14 +77,14 @@ export default function page() {
           </aside>
           <section>
             <div className="border p-[15px] w-[100%] h-[100%]">
-              <button className="border px-[10px] py-[2px] bg-green-700 text-white rounded-full float-right ml-[15px]">
+              <button onClick={() => setShowPopup(true)} className="border px-[10px] py-[2px] bg-green-700 text-white rounded-full float-right ml-[15px]">
                 +
               </button>
               {tabsSwitcher()}
             </div>
           </section>
         </div>
-        <div className="flex z-10 items-center absolute top-[50%] right-[50%] translate-x-[50%] translate-y-[50%]">
+        {showPopup && <div className="flex z-10 items-center absolute top-[30%] right-[50%] translate-x-[50%]">
           <form className="px-[20px] py-[30px] border p-[10px] flex flex-col gap-[30px] bg-[#F2F2F2]">
             <input
               placeholder=""
@@ -92,14 +98,15 @@ export default function page() {
               <option>4</option>
             </select>
             <input
+            onClick={handleClick}
               value="CONFIRM"
               className="bg-[#1D1D1D] text-white py-[15px]"
               type="submit"
             />
           </form>
-        </div>
-        <div className="absolute z-0 top-0 right-0 bottom-0 left-0 bg-black"></div>
+        </div>}
       </main>
+      {showPopup &&<div onClick={() => setShowPopup(false)} className="absolute z-0 top-0 right-0 bottom-0 left-0 bg-[rgba(0,0,0,0.3)]"></div>}
     </>
   );
 }

@@ -17,13 +17,13 @@ export const linksFooter = [
 ]
 
 export const navItems = [
-    { text: "NEW", link: '/catalog' },
-    { text: "DENIM", link: '/catalog' },
-    { text: "Bottoms", link: '/catalog' },
-    { text: "Tops", link: '/catalog' },
-    { text: "Bags", link: '/catalog' },
-    { text: "Every day basics", link: '/catalog' },
-    { text: "Sale", link: '/catalog' },
-    { text: "Coming soon", link: '/catalog' },
+    { text: "NEW", link: '/catalog/new' },
+    // { text: "DENIM", link: '/catalog' },
+    { text: "Bottoms", link: '/catalog/bottoms' },
+    { text: "Tops", link: '/catalog/tops' },
+    { text: "Bags", link: '/catalog/bags' },
+    // { text: "Every day basics", link: '/catalog' },
+    { text: "Sale", link: '/catalog/sale' },
+    { text: "Coming soon", link: '/catalog/soon' },
 
 ]
