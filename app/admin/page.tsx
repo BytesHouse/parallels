@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-'use client';
+"use client";
 import { useState } from "react";
 
 export default function page() {
@@ -25,6 +25,41 @@ export default function page() {
   const handleClick = (e: any) => {
     e.preventDefault();
     setShowPopup(false);
+  };
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    console.log("work");
+  };
+  if (true) {
+    return (
+      <>
+        <div className="w-screen h-screen flex justify-center items-center">
+          <form
+            onSubmit={(e) => handleSubmit(e)}
+            className="shadow-lg border-gray-600 grid grid-cols-1 items-center justify-items-center px-[60px] py-[45px] w-[320px] gap-[15px] bg-[#D9D9D9] rounded-[25px] "
+            action="#"
+          >
+            <h1 className="text-[24px] font-bold flex justify-center">
+              ADMIN PANEL
+            </h1>
+
+            <input
+              className="border w-[200px] h-[25px] rounded-[25px] "
+              type="text"
+            />
+
+            <input
+              className="border w-[200px] h-[25px] rounded-[25px]"
+              type="password"
+            />
+            <input
+              className="border w-[150px] h-[35px] bg-black text-white mt-[10px]"
+              type="submit"
+            />
+          </form>
+        </div>
+      </>
+    );
   }
   return (
     <>
@@ -77,36 +112,46 @@ export default function page() {
           </aside>
           <section>
             <div className="border p-[15px] w-[100%] h-[100%]">
-              <button onClick={() => setShowPopup(true)} className="border px-[10px] py-[2px] bg-green-700 text-white rounded-full float-right ml-[15px]">
+              <button
+                onClick={() => setShowPopup(true)}
+                className="border px-[10px] py-[2px] bg-green-700 text-white rounded-full float-right ml-[15px]"
+              >
                 +
               </button>
               {tabsSwitcher()}
             </div>
           </section>
         </div>
-        {showPopup && <div className="flex z-10 items-center absolute top-[30%] right-[50%] translate-x-[50%]">
-          <form className="px-[20px] py-[30px] border p-[10px] flex flex-col gap-[30px] bg-[#F2F2F2]">
-            <input
-              placeholder=""
-              type="text"
-              className="py-[5px]  bg-transparent border-b focus:bg-white outline-0"
-            />
-            <select>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-            </select>
-            <input
-            onClick={handleClick}
-              value="CONFIRM"
-              className="bg-[#1D1D1D] text-white py-[15px]"
-              type="submit"
-            />
-          </form>
-        </div>}
+        {showPopup && (
+          <div className="flex z-10 items-center absolute top-[30%] right-[50%] translate-x-[50%]">
+            <form className="px-[20px] py-[30px] border p-[10px] flex flex-col gap-[30px] bg-[#F2F2F2]">
+              <input
+                placeholder=""
+                type="text"
+                className="py-[5px]  bg-transparent border-b focus:bg-white outline-0"
+              />
+              <select>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+              <input
+                onClick={handleClick}
+                value="CONFIRM"
+                className="bg-[#1D1D1D] text-white py-[15px]"
+                type="submit"
+              />
+            </form>
+          </div>
+        )}
       </main>
-      {showPopup &&<div onClick={() => setShowPopup(false)} className="absolute z-0 top-0 right-0 bottom-0 left-0 bg-[rgba(0,0,0,0.3)]"></div>}
+      {showPopup && (
+        <div
+          onClick={() => setShowPopup(false)}
+          className="absolute z-0 top-0 right-0 bottom-0 left-0 bg-[rgba(0,0,0,0.3)]"
+        ></div>
+      )}
     </>
   );
 }
