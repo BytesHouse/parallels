@@ -19,9 +19,9 @@ export const linksFooter = [
 export const navItems = [
     { text: "NEW", link: '/catalog/new' },
     // { text: "DENIM", link: '/catalog' },
-    { text: "Bottoms", link: '/catalog/bottoms' },
-    { text: "Tops", link: '/catalog/tops' },
-    { text: "Bags", link: '/catalog/handbags' },
+    { text: "Shorts", link: '/catalog/shorts' },
+    { text: "Shirts", link: '/catalog/shirts' },
+    { text: "Handbags", link: '/catalog/handbags' },
     // { text: "Every day basics", link: '/catalog' },
     { text: "Sale", link: '/catalog/sale' },
     { text: "Coming soon", link: '/catalog/soon' },

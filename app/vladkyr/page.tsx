@@ -5,6 +5,9 @@ import { useState } from "react";
 export default function page() {
   const [state, setState] = useState(1);
   const [showPopup, setShowPopup] = useState(false);
+  const [admin, setAdmin] = useState("");
+  const [password, setPassword] = useState("");
+  const [protect, setProtect] = useState(false);
   function tabsSwitcher() {
     switch (state) {
       case 1:
@@ -28,15 +31,24 @@ export default function page() {
   };
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    console.log("work");
+
+    if (admin === process.env.ADMIN && password === process.env.PASSWORD) {
+      setProtect(true);
+    }
   };
-  if (true) {
+  const handleAdmin = (value: any) => {
+    setAdmin(value);
+  };
+  const handlePassword = (value: any) => {
+    setPassword(value);
+  };
+  if (!protect) {
     return (
       <>
         <div className="w-screen h-screen flex justify-center items-center">
           <form
             onSubmit={(e) => handleSubmit(e)}
-            className="shadow-lg border-gray-600 grid grid-cols-1 items-center justify-items-center px-[60px] py-[45px] w-[320px] gap-[15px] bg-[#D9D9D9] rounded-[25px] "
+            className="shadow-lg border-gray-600 grid grid-cols-1 items-center justify-items-center px-[60px] py-[45px] min-w-[320px] max-w-[20%] gap-[15px] bg-[#D9D9D9] rounded-[25px] "
             action="#"
           >
             <h1 className="text-[24px] font-bold flex justify-center">
@@ -44,12 +56,14 @@ export default function page() {
             </h1>
 
             <input
-              className="border w-[200px] h-[25px] rounded-[25px] "
+              onChange={(e) => handleAdmin(e.target.value)}
+              className="px-[10px] border w-[200px] h-[45px] rounded-[25px] "
               type="text"
             />
 
             <input
-              className="border w-[200px] h-[25px] rounded-[25px]"
+              onChange={(e) => handlePassword(e.target.value)}
+              className="px-[10px] border w-[200px] h-[45px] rounded-[25px]"
               type="password"
             />
             <input
