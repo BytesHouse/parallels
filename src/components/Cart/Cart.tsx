@@ -1,35 +1,146 @@
+"use client";
+import { useState } from "react";
 import { BtnPrimary } from "../BtnPrimary/BtnPrimary";
 
+const initialState = {
+  fullName: "",
+  phone: "",
+  email: "",
+  comment: "",
+  delivery: "Courier",
+  payment: "Cash",
+};
+
 export const Cart = () => {
+  const [deliveryMethod, setDeliveryMethod] = useState(0);
+  const [paymentMethod, setPaymentMethod] = useState(0);
+  const [order, setOrder] = useState(initialState);
+  console.log(order);
+  const handleCheckClicked = (method: number, key: string, value: string) => {
+    setDeliveryMethod(method);
+    setOrder({ ...order, [key]: value });
+  };
+  const handlePaymentClicked = (method: number, key: string, value: string) => {
+    setPaymentMethod(method);
+    setOrder({ ...order, [key]: value });
+  };
   return (
-    <div className="border flex flex-col self-baseline">
-      <div className="bg-gray-100 flex p-[10px] gap-[20px] items-center">
-        <p className="text-[24px] font-bold">Cart</p>
-      </div>
-      <div className="p-[10px] border-b h-[300px]">
-        {true ? <div className="w-full h-full flex justify-center items-center">Cart Empty</div> : <div></div>}
-      </div>
-      <div className="p-[10px] border-b">
-        <p className="flex justify-between">
-          <span>products</span>
-          <span>price</span>
-        </p>
-        <p className="flex justify-between">
-          <span>delivery</span>
-          <span>price</span>
-        </p>
-      </div>
-      <div className="p-[10px] border-b flex flex-col">
-        <p className="flex justify-between">
-          <span>Total</span>
-          <span>price</span>
-        </p>
-        <div className="flex gap-2 text-[12px]">
-          <input type="checkbox" name="" id="" required/>
-          <p>I agree to the privacy policy and terms of parallelswears.com</p>
+    <div className="sticky top-[20px] flex flex-col gap-[15px] md:gap-[30px] self-baseline">
+      <div>
+        <p className="uppercase text-[16px] font-[500]">DELIVERY</p>
+        <div className="flex flex-col gap-[10px]">
+          <p className="text-[12px] font-[300]">Shipping method</p>
+          <div className="flex flex-col gap-[10px]">
+            <div className="flex gap-[15px]">
+              <CheckBox
+                callback={() => handleCheckClicked(0, "delivery", "Courier")}
+                state={deliveryMethod === 0}
+              />{" "}
+              <p className="text-[12px] font-[300]">Courier Delivery Req</p>
+            </div>
+            <div className="flex gap-[15px]">
+              <CheckBox
+                callback={() =>
+                  handleCheckClicked(1, "delivery", "Self-pickup")
+                }
+                state={deliveryMethod === 1}
+              />
+              <p className="text-[12px] font-[300]">Self-pickup Req</p>
+            </div>
+          </div>
         </div>
-        <div className="self-center"> <BtnPrimary styles="px-[200px] py-[15px]" text={"Order"} /></div>
+      </div>
+      <div className="flex flex-col gap-[20px]">
+        <p className="uppercase text-[16px] font-[500]">Contacts</p>
+        <input
+          onChange={(e) => setOrder({ ...order, fullName: e.target.value })}
+          placeholder="Full Name*"
+          className="border-b outline-none"
+          type="text"
+        />
+        <input
+          onChange={(e) => setOrder({ ...order, phone: e.target.value })}
+          placeholder="Phone number*"
+          className="border-b outline-none"
+          type="text"
+        />
+        <input
+          onChange={(e) => setOrder({ ...order, email: e.target.value })}
+          placeholder="Email*"
+          className="border-b outline-none"
+          type="text"
+        />
+        <textarea
+          onChange={(e) => setOrder({ ...order, comment: e.target.value })}
+          placeholder="Comment"
+          className="border-b outline-none resize-none"
+          name=""
+          id=""
+          cols={30}
+          rows={10}
+        ></textarea>
+      </div>
+      <div>
+        <p className="uppercase text-[16px] font-[500]">Payment</p>
+        <div className="flex flex-col gap-[10px]">
+          <div className="flex gap-[15px]">
+            <CheckBox
+              callback={() => handlePaymentClicked(0, "payment", "Cash")}
+              state={paymentMethod === 0}
+            />{" "}
+            <p className="text-[12px] font-[300]">Cash</p>
+          </div>
+          <div className="flex gap-[15px]">
+            <CheckBox
+              callback={() => handlePaymentClicked(1, "payment", "Card")}
+              state={paymentMethod === 1}
+            />
+            <p className="text-[12px] font-[300]">Card</p>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col gap-[20px]">
+        <p className="uppercase text-[16px] font-[500]">Summary</p>
+        <div>
+          <div className="flex justify-between">
+            <span className="text-[12px] font-[300]">Subtotal</span>
+            <span className="text-[12px] font-[500]">$486.00</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-[12px] font-[300]">Delivery</span>
+            <span className="text-[12px] font-[500]">$0.00</span>
+          </div>
+        </div>
+        <div>
+        <div className="flex justify-between border-t mt-[20px] pt-[20px]">
+            <span className="text-[12px] font-[300]">Total</span>
+            <span className="text-[12px] font-[500]">$486.00</span>
+          </div>
+        </div>
+        <BtnPrimary styles="h-[45px]" text={"buy now"} />
       </div>
     </div>
+  );
+};
+
+const CheckBox = ({ state, callback }: { state: boolean; callback: any }) => {
+  return (
+    <svg
+      onClick={callback}
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect x="0.5" y="0.5" width="19" height="19" stroke="black" />
+      <rect
+        x="4"
+        y="4"
+        width="12"
+        height="12"
+        fill={state ? "black" : "none"}
+      />
+    </svg>
   );
 };
