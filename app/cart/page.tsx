@@ -1,3 +1,4 @@
+'use client'
 import { Cart } from "../../src/components/Cart/Cart";
 import { Delivery } from "../../src/components/Delivery/Delivery";
 import { Footer } from "../../src/components/Footer/Footer";

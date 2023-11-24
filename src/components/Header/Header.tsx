@@ -10,12 +10,8 @@ import { BurgerIcon } from "../BurgerIcon/BurgerIcon";
 import { useState } from "react";
 import { LanguageSwitcher } from "../LanguageSwitcher/LanguageSwitcher";
 import { GoogleIcon } from "../SocialIcons/SocialIcons";
-import { signIn, signOut, useSession } from "next-auth/react";
 
 export const Header = () => {
-  const { data: session } = useSession();
-  if (session && session.user) {
-  }
   const [showMenu, setShowMenu] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const handleClickBurger = () => {
@@ -37,20 +33,17 @@ export const Header = () => {
             <Link href={"/cart"}>
               <CartIcon />
             </Link>
-            {session && session.user ? <div>
-              {session.user.name}{" "}
-              <button onClick={() => signOut()}>signout</button>{" "}
-            </div> :<div>
+            <div>
               <button onClick={() => setIsOpen(true)}>
                 <UserIcon />
               </button>
-            </div>}
           </div>
               <button onClick={handleClickBurger} className="flex md:hidden">
                 <BurgerIcon />
               </button>
         </div>
       </div>
+    </div>
       <nav>
         <ul
           className={`border-b ${
@@ -69,8 +62,7 @@ export const Header = () => {
           isOpen ? "right-0" : "-right-[320px]"
         } absolute top-0  min-w-[320px] bg-white h-screen p-[20px]`}
       >
-        <div></div>
-        <div onClick={() => signIn()}>
+        <div>
           <GoogleIcon color="black" />
         </div>
       </div>
