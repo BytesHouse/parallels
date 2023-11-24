@@ -26,7 +26,6 @@ export const ProductList = async (props: any) => {
   if (!res.length) {
     res = await getAllData();
   }
-  console.log(pathname?.split("/")[2]);
   return (
     <section className="container px-[15px] md:px-[0] mx-auto pt-[20px] pb-[50px] flex flex-col">
       <div className="text-[24px] font-medium">Filters</div>

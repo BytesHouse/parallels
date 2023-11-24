@@ -1,5 +1,5 @@
 "use client";
-import { MouseEventHandler, ReactElement, useState } from "react";
+import { Dispatch, MouseEventHandler, ReactElement, SetStateAction, useState } from "react";
 import { LabelSale } from "../LabelSale/LabelSale";
 import { IconDecrement } from "../IconDecrement/IconDecrement";
 import { IconIncrement } from "../IconIncrement/IconIncrement";
@@ -7,15 +7,16 @@ import { BtnPrimary } from "../BtnPrimary/BtnPrimary";
 
 export const DescriptionBlock = ({item}: any) => {
   const {price, name, id, count} = item;
+  const [counter, setCounter] = useState(1);
   return (
     <div className="uppercase max-w-[410px] flex flex-col gap-[30px]">
       <p className="text-[14px] font-[400]">New season</p>
       <h1>{name}</h1>
       <Price price={price} />
-      <Counter max={count} />
+      <Counter counter={counter} set={setCounter} max={count} />
       <Colors />
       <Sizes type={"shirts"} />
-      <BuyNowBlock />
+      <BuyNowBlock item={item} counter={counter} />
       <Description />
       <ReviewsList />
     </div>
@@ -35,22 +36,21 @@ const Price = ({price}: {price: string}) => {
 };
 
 // Counter
-const Counter = ({max}: {max: number}) => {
-  const [count, setCount] = useState(1);
+const Counter = ({max, counter, set}: {max: number, counter: number, set: Dispatch<SetStateAction<number>> }) => {
   const hangleIncrement = () => {
-    if(count < max){
-      setCount(count + 1);
+    if(counter < max){
+      set(counter + 1);
     }
   };
   const hangleDecrement = () => {
-    count && setCount(count - 1);
+    counter && set(counter - 1);
   };
   return (
     <div>
       <h2 className="text-[14px] font-[400]">Quantity</h2>
       <div className="flex items-center gap-[15px]">
         <ButtonPrimary icon={<IconDecrement />} callback={hangleDecrement} />
-        <div>{count}</div>
+        <div>{counter}</div>
         <ButtonPrimary icon={<IconIncrement />} callback={hangleIncrement} />
       </div>
     </div>
@@ -122,10 +122,29 @@ const Size = ({size, sizeL}: {size: string, sizeL: string}) => {
   );
 };
 //Buy Now
-const BuyNowBlock = () => {
+const BuyNowBlock = ({item, counter}: any) => {
+  const {price, name, id, description, imageUrl} = item;
+  const cartItem = {price, name, count: counter, id, description, image: imageUrl[0]}
+  const handleBuyClick = () => {
+    if(!localStorage.getItem('cart')){
+      localStorage.setItem('cart', JSON.stringify([cartItem]))
+      return;
+    } else {
+      const tmp = JSON.parse(localStorage.getItem('cart')!)
+      const checker = tmp.some((item: any) => item.id === id);
+      if(checker){
+        const item = tmp.find(((item: any) => item.id === id))
+        item.count += counter;
+        localStorage.setItem('cart', JSON.stringify(tmp))
+        return;
+      }
+      tmp.push(cartItem);
+      localStorage.setItem('cart', JSON.stringify(tmp));
+    }
+  }
   return (
     <div className="flex gap-[10px]  sticky bottom-5">
-      <BtnPrimary styles="w-full py-[15px]" text={"Buy now"} />
+      <BtnPrimary callback={handleBuyClick} styles="w-full py-[15px]" text={"Buy now"} />
       <Favorites />
     </div>
   );

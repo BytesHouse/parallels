@@ -10,10 +10,11 @@ import { BurgerIcon } from "../BurgerIcon/BurgerIcon";
 import { useState } from "react";
 import { LanguageSwitcher } from "../LanguageSwitcher/LanguageSwitcher";
 import { GoogleIcon } from "../SocialIcons/SocialIcons";
+import { signIn, signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 
 export const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
   const handleClickBurger = () => {
     setShowMenu(!showMenu);
   };
@@ -34,16 +35,14 @@ export const Header = () => {
               <CartIcon />
             </Link>
             <div>
-              <button onClick={() => setIsOpen(true)}>
-                <UserIcon />
-              </button>
+              <AuthButton />
+            </div>
+            <button onClick={handleClickBurger} className="flex md:hidden">
+              <BurgerIcon />
+            </button>
           </div>
-              <button onClick={handleClickBurger} className="flex md:hidden">
-                <BurgerIcon />
-              </button>
         </div>
       </div>
-    </div>
       <nav>
         <ul
           className={`border-b ${
@@ -57,15 +56,26 @@ export const Header = () => {
           ))}
         </ul>
       </nav>
-      <div
-        className={`${
-          isOpen ? "right-0" : "-right-[320px]"
-        } absolute top-0  min-w-[320px] bg-white h-screen p-[20px]`}
-      >
-        <div>
-          <GoogleIcon color="black" />
-        </div>
-      </div>
     </header>
+  );
+};
+
+const AuthButton = () => {
+  const { data: session } = useSession();
+  if (session) {
+    const name = String(session.user).split(' ')
+    .map((word: string) => word[0].toUpperCase())
+    .join('');
+    return (
+      <div className="flex gap-[5px]">
+        {session.user?.image ? <Image className="rounded-full" width={25} height={25} src={session.user?.image} alt="avatar" /> : <div>{name}</div>} <br />
+        <button onClick={() => signOut()}>Sign Out</button>
+      </div>
+    );
+  }
+  return (
+    <div className="cursor-pointer" onClick={() => signIn()}>
+      <UserIcon />
+    </div>
   );
 };

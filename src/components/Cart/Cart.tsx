@@ -15,7 +15,6 @@ export const Cart = () => {
   const [deliveryMethod, setDeliveryMethod] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState(0);
   const [order, setOrder] = useState(initialState);
-  console.log(order);
   const handleCheckClicked = (method: number, key: string, value: string) => {
     setDeliveryMethod(method);
     setOrder({ ...order, [key]: value });
@@ -24,6 +23,13 @@ export const Cart = () => {
     setPaymentMethod(method);
     setOrder({ ...order, [key]: value });
   };
+  let payOrder = [];
+  let totalPrice = 0;
+  let deliveryPrice = 0;
+  if(localStorage.getItem('cart')){
+    payOrder = JSON.parse(localStorage.getItem('cart')!)
+    totalPrice = payOrder.reduce((acc: any, item: any) => acc + (item.price * item.count), totalPrice)
+  }
   return (
     <div className="sticky top-[20px] flex flex-col gap-[15px] md:gap-[30px] self-baseline">
       <div>
@@ -104,17 +110,17 @@ export const Cart = () => {
         <div>
           <div className="flex justify-between">
             <span className="text-[12px] font-[300]">Subtotal</span>
-            <span className="text-[12px] font-[500]">$486.00</span>
+            <span className="text-[12px] font-[500]">${totalPrice}</span>
           </div>
           <div className="flex justify-between">
             <span className="text-[12px] font-[300]">Delivery</span>
-            <span className="text-[12px] font-[500]">$0.00</span>
+            <span className="text-[12px] font-[500]">${deliveryPrice}</span>
           </div>
         </div>
         <div>
         <div className="flex justify-between border-t mt-[20px] pt-[20px]">
             <span className="text-[12px] font-[300]">Total</span>
-            <span className="text-[12px] font-[500]">$486.00</span>
+            <span className="text-[12px] font-[500]">${totalPrice + deliveryPrice}</span>
           </div>
         </div>
         <BtnPrimary styles="h-[45px]" text={"buy now"} />

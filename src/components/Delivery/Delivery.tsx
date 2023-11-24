@@ -1,8 +1,13 @@
 "use client";
+import Image from "next/image";
 import { useState } from "react";
 
 export const Delivery = () => {
   const [shippingCheck, setShippingCheck] = useState();
+  let cart = [];
+  if(localStorage.getItem('cart')){
+    cart = JSON.parse(localStorage.getItem('cart')!)
+  }
   return (
     <div className="pb-[20px]">
       <div className="flex flex-col gap-[15px] md:gap-[30px]">
@@ -12,35 +17,31 @@ export const Delivery = () => {
         </p>
       </div>
       <ul className="flex flex-col mt-[20px]">
-        <CartItem />
-        <CartItem />
-        <CartItem />
-        <CartItem />
-        <CartItem />
-        <CartItem />
-        <CartItem />
-        <CartItem />
+        {cart.map((item: any) => {
+          return <CartItem item={item} key={String(item.name)}/>
+        })}
       </ul>
     </div>
   );
 };
 
-const CartItem = ({callback}: {callback?: any}) => {
+const CartItem = ({callback, item}: {callback?: any, item?: any}) => {
+  const {price, name, count, description, id, image} = item;
   return (
     <li className="border-t py-[20px] flex justify-between">
       <div className="flex gap-[20px]">
-        <img className="w-[150px] h-[150px]" src="" alt="test" />
+        <Image width={150} height={150} className="w-[150px] h-[150px]" src={image} alt="test" />
         <div className="flex gap-[25px] md:gap-[50px]">
           <div>
             <p className="text-[12px] font-[300] uppercase">New season</p>
             <p className="text-[16px] font-[500] uppercase">
-              Contrast Bootcut Sweatpants <span>GRAY</span>
+              {name}
             </p>
-            <p className="text-[14px] font-[300]">
+            {/* <p className="text-[14px] font-[300]">
               Vendor code <span>1234</span>
-            </p>
+            </p> */}
           </div>
-          <div>$243</div>
+          <div>₪{(price * count)}</div>
           <div>
             <div>
               <p className="text-[12px] font-[300]">Size</p>
@@ -48,7 +49,7 @@ const CartItem = ({callback}: {callback?: any}) => {
             </div>
             <div>
               <p className="text-[12px] font-[300]">Quantity</p>
-              <p className="text-[12px] font-[500]">2</p>
+              <p className="text-[12px] font-[500]">{count}</p>
             </div>
           </div>
         </div>

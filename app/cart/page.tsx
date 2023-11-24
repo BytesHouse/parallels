@@ -1,10 +1,15 @@
-'use client'
 import { Cart } from "../../src/components/Cart/Cart";
 import { Delivery } from "../../src/components/Delivery/Delivery";
 import { Footer } from "../../src/components/Footer/Footer";
 import { Header } from "../../src/components/Header/Header";
+import {redirect} from 'next/navigation'
+import { getServerSession } from "next-auth";
 
-export default function page() {
+export default async function page() {
+  const session = await getServerSession();
+  if(!session || !session.user) {
+    redirect('api/auth/signin')
+  }
   return (
     <>
       <Header />

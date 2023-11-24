@@ -1,8 +1,14 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
+import {redirect} from 'next/navigation'
 
 export default function page() {
+  const { data: session } = useSession();
+  if(session?.user?.email !== 'parallelswear@gmail.com'){
+    redirect('/');
+  }
   const [state, setState] = useState(1);
   const [showPopup, setShowPopup] = useState(false);
   const [admin, setAdmin] = useState("");
