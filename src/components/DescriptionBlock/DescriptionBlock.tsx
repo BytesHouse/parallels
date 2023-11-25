@@ -6,17 +6,20 @@ import { IconIncrement } from "../IconIncrement/IconIncrement";
 import { BtnPrimary } from "../BtnPrimary/BtnPrimary";
 
 export const DescriptionBlock = ({item}: any) => {
-  const {price, name, id, count} = item;
+  const {price, name, id, count, categoryId} = item;
   const [counter, setCounter] = useState(1);
+  const [color, setColor] = useState('')
+  const [size, setSize] = useState('')
+  // const [type, setType] = useState(categoryId)
   return (
     <div className="uppercase max-w-[410px] flex flex-col gap-[30px]">
       <p className="text-[14px] font-[400]">New season</p>
       <h1>{name}</h1>
       <Price price={price} />
       <Counter counter={counter} set={setCounter} max={count} />
-      <Colors />
-      <Sizes type={"shirts"} />
-      <BuyNowBlock item={item} counter={counter} />
+      <Colors color={color} setColor={setColor} />
+      <Sizes size={size} setSize={setSize} type={categoryId} />
+      <BuyNowBlock color={color} size={size} item={item} counter={counter} />
       <Description />
       <ReviewsList />
     </div>
@@ -71,13 +74,14 @@ const ButtonPrimary = ({ icon, callback }: ButtonPrimaryProps) => {
 };
 
 // Colors
-const Colors = () => {
+const Colors = (props: any) => {
+  const {color, setColor} = props;
   return (
     <div>
       <h3 className="text-[14px] font-[400]">colors</h3>
       <ul className="flex gap-[5px]">
-        <li className="w-[30px] h-[30px] bg-white rounded-full border border-gray-300"></li>
-        <li className="w-[30px] h-[30px] bg-black rounded-full"></li>
+        <li onClick={() => setColor('white')} className={`${color === 'white' && 'border-yellow-500'} w-[30px] h-[30px] bg-white rounded-full border border-gray-300 cursor-pointer`}></li>
+        <li onClick={() => setColor('black')} className={`${color === 'black' && 'border-yellow-500 border'} w-[30px] h-[30px] bg-black rounded-full cursor-pointer`}></li>
         {/* <li className="w-[30px] h-[30px] bg-[#656B73] rounded-full"></li> */}
         {/* <li className="w-[30px] h-[30px] bg-[#468578] rounded-full"></li> */}
       </ul>
@@ -97,14 +101,14 @@ const shortsArr = [{size: '', sizeL: "S"},
 {size: '', sizeL: "XL"}
 ];
 
-const Sizes = ({type} : {type: string}) => {
-  const tmp = type === 'shirts' ? shirtsArr : shortsArr
+const Sizes = ({type, size, setSize} : any) => {
+  const tmp = type === 0 ? shirtsArr : type === 1 ? shortsArr : [{size: '', sizeL: "L"}]
   return (
     <div>
       <h3 className="text-[14px] font-[400]">Size</h3>
       <div className="grid grid-cols-5 grid-rows-2 gap-[10px]">
         {tmp.map((item) => (
-          <Size key={item + " " + 1} size={item.size} sizeL={item.sizeL} />
+          <Size key={item.sizeL + " " + 1} size={item.size} sizeL={item.sizeL} state={size} callback={setSize} />
         ))}
       </div>
       <p className="normal-case	p-[12px] font-[300] text-[#64A0C2] cursor-pointer">
@@ -113,27 +117,27 @@ const Sizes = ({type} : {type: string}) => {
     </div>
   );
 };
-const Size = ({size, sizeL}: {size: string, sizeL: string}) => {
+const Size = ({size, sizeL, state, callback}: {size: string, sizeL: string, state:string, callback: any}) => {
   return (
-    <div className="p-[10px] text-center border border-[#F2F2F2] hover:border-[#1D1D1D] transition-all cursor-pointer">
+    <div onClick={() => callback(sizeL)} className={`${sizeL === state && 'border-black'} p-[10px] text-center border border-[#F2F2F2] hover:border-[#1D1D1D] transition-all cursor-pointer`}>
       <p className="text-[14px] font-[400]">{size}</p>
       <p className="text-[12px] font-[300] text-[#B3B3B3]">{sizeL}</p>
     </div>
   );
 };
 //Buy Now
-const BuyNowBlock = ({item, counter}: any) => {
+const BuyNowBlock = ({item, counter, color,size}: any) => {
   const {price, name, id, description, imageUrl} = item;
-  const cartItem = {price, name, count: counter, id, description, image: imageUrl[0]}
+  const cartItem = {price, name, count: counter, id, description, image: imageUrl[0], color, size}
   const handleBuyClick = () => {
     if(!localStorage.getItem('cart')){
       localStorage.setItem('cart', JSON.stringify([cartItem]))
       return;
     } else {
       const tmp = JSON.parse(localStorage.getItem('cart')!)
-      const checker = tmp.some((item: any) => item.id === id);
+      const checker = tmp.some((item: any) => item.id === id && item.color === color && item.size === size);
       if(checker){
-        const item = tmp.find(((item: any) => item.id === id))
+        const item = tmp.find(((item: any) => item.id === id && item.color === color && item.size === size))
         item.count += counter;
         localStorage.setItem('cart', JSON.stringify(tmp))
         return;

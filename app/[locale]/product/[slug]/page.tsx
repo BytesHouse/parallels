@@ -1,15 +1,23 @@
 import { Footer } from "@/src/components/Footer/Footer";
 import { Header } from "@/src/components/Header/Header";
 import ProductCard from "@/src/components/ProductCard/ProductCard";
+import initTranslations from "@/app/i18n";
+import TranslationsProvider from "@/src/components/TranslationsProvider/TranslationsProvider";
 
-export default function page({ params }: { params: { slug: string } }) {
+export default async function page({ params: { locale, slug } }: any ) {
+  const { t, options } = await initTranslations(locale, ["home"]);
+
   return (
     <>
+<TranslationsProvider namespaces={options.ns} locale={locale}>
+
       <Header />
       <main>
-        <ProductCard id={+params.slug} />
+        <ProductCard id={+slug} />
         <Footer />
       </main>
+</TranslationsProvider>
+
     </>
   );
 }

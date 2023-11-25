@@ -1,15 +1,21 @@
 import { Footer } from "@/src/components/Footer/Footer";
 import { Header } from "@/src/components/Header/Header";
 import { PrivacyBlock } from "@/src/components/PrivacyBlock/PrivacyBlock";
+import initTranslations from "@/app/i18n";
+import TranslationsProvider from "@/src/components/TranslationsProvider/TranslationsProvider";
 
-export default function page() {
+export default async function page({ params: { locale } }: any) {
+  const { t, options } = await initTranslations(locale, ["home"]);
+
   return (
     <>
-      <Header />
-      <main>
-        <PrivacyBlock/>
-        <Footer />
-      </main>
+      <TranslationsProvider namespaces={options.ns} locale={locale}>
+        <Header />
+        <main>
+          <PrivacyBlock />
+          <Footer />
+        </main>
+      </TranslationsProvider>
     </>
   );
 }
