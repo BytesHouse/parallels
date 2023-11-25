@@ -26,9 +26,12 @@ export const Cart = () => {
   let payOrder = [];
   let totalPrice = 0;
   let deliveryPrice = 0;
-  if(localStorage.getItem('cart')){
-    payOrder = JSON.parse(localStorage.getItem('cart')!)
-    totalPrice = payOrder.reduce((acc: any, item: any) => acc + (item.price * item.count), totalPrice)
+  if (localStorage.getItem("cart")) {
+    payOrder = JSON.parse(localStorage.getItem("cart")!);
+    totalPrice = payOrder.reduce(
+      (acc: any, item: any) => acc + item.price * item.count,
+      totalPrice
+    );
   }
   return (
     <div className="sticky top-[20px] flex flex-col gap-[15px] md:gap-[30px] self-baseline">
@@ -118,9 +121,11 @@ export const Cart = () => {
           </div>
         </div>
         <div>
-        <div className="flex justify-between border-t mt-[20px] pt-[20px]">
+          <div className="flex justify-between border-t mt-[20px] pt-[20px]">
             <span className="text-[12px] font-[300]">Total</span>
-            <span className="text-[12px] font-[500]">${totalPrice + deliveryPrice}</span>
+            <span className="text-[12px] font-[500]">
+              ${totalPrice + deliveryPrice}
+            </span>
           </div>
         </div>
         <BtnPrimary styles="h-[45px]" text={"buy now"} />

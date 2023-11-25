@@ -5,8 +5,8 @@ import { useState } from "react";
 export const Delivery = () => {
   const [shippingCheck, setShippingCheck] = useState();
   let cart = [];
-  if(localStorage.getItem('cart')){
-    cart = JSON.parse(localStorage.getItem('cart')!)
+  if (localStorage.getItem("cart")) {
+    cart = JSON.parse(localStorage.getItem("cart")!);
   }
   return (
     <div className="pb-[20px]">
@@ -16,32 +16,36 @@ export const Delivery = () => {
           Ship from <span className="text-black">Israel</span>
         </p>
       </div>
-      <ul className="flex flex-col mt-[20px]">
+      <ul className="flex flex-col  mt-[20px]">
         {cart.map((item: any) => {
-          return <CartItem item={item} key={String(item.name)}/>
+          return <CartItem item={item} key={String(item.name)} />;
         })}
       </ul>
     </div>
   );
 };
 
-const CartItem = ({callback, item}: {callback?: any, item?: any}) => {
-  const {price, name, count, description, id, image} = item;
+const CartItem = ({ callback, item }: { callback?: any; item?: any }) => {
+  const { price, name, count, description, id, image } = item;
   return (
-    <li className="border-t py-[20px] flex justify-between">
-      <div className="flex gap-[20px]">
-        <Image width={150} height={150} className="w-[150px] h-[150px]" src={image} alt="test" />
+    <li className="border-t py-[20px]   flex  justify-between">
+      <div className="flex w-80  gap-[20px]">
+        <Image
+          width={150}
+          height={150}
+          className="w-[150px] h-[150px]"
+          src={image}
+          alt="test"
+        />
         <div className="flex gap-[25px] md:gap-[50px]">
-          <div>
+          <div className=" w-28">
             <p className="text-[12px] font-[300] uppercase">New season</p>
-            <p className="text-[16px] font-[500] uppercase">
-              {name}
-            </p>
+            <p className="text-[16px] font-[500] uppercase">{name}</p>
             {/* <p className="text-[14px] font-[300]">
               Vendor code <span>1234</span>
             </p> */}
           </div>
-          <div>₪{(price * count)}</div>
+          <div className=" w-14">₪{price * count}</div>
           <div>
             <div>
               <p className="text-[12px] font-[300]">Size</p>
@@ -54,7 +58,9 @@ const CartItem = ({callback, item}: {callback?: any, item?: any}) => {
           </div>
         </div>
       </div>
-      <div className="cursor-pointer" onClick={callback}>X</div>
+      <div className="cursor-pointer" onClick={callback}>
+        X
+      </div>
     </li>
   );
 };

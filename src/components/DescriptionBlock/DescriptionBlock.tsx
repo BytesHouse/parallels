@@ -1,20 +1,26 @@
 "use client";
-import { Dispatch, MouseEventHandler, ReactElement, SetStateAction, useState } from "react";
+import {
+  Dispatch,
+  MouseEventHandler,
+  ReactElement,
+  SetStateAction,
+  useState,
+} from "react";
 import { LabelSale } from "../LabelSale/LabelSale";
 import { IconDecrement } from "../IconDecrement/IconDecrement";
 import { IconIncrement } from "../IconIncrement/IconIncrement";
 import { BtnPrimary } from "../BtnPrimary/BtnPrimary";
 
-export const DescriptionBlock = ({item}: any) => {
-  const {price, name, id, count, categoryId} = item;
+export const DescriptionBlock = ({ item }: any) => {
+  const { price, name, id, count, categoryId } = item;
   const [counter, setCounter] = useState(1);
-  const [color, setColor] = useState('')
-  const [size, setSize] = useState('')
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
   // const [type, setType] = useState(categoryId)
   return (
-    <div className="uppercase max-w-[410px] flex flex-col gap-[30px]">
-      <p className="text-[14px] font-[400]">New season</p>
-      <h1>{name}</h1>
+    <div className="uppercase max-w-[410px] mt-[84px] mb-[50px] flex flex-col gap-[30px]">
+      <p className="text-[12px] font-[300]">New season</p>
+      <h1 className="font-[500] uppercase">{name}</h1>
       <Price price={price} />
       <Counter counter={counter} set={setCounter} max={count} />
       <Colors color={color} setColor={setColor} />
@@ -26,7 +32,7 @@ export const DescriptionBlock = ({item}: any) => {
   );
 };
 
-const Price = ({price}: {price: string}) => {
+const Price = ({ price }: { price: string }) => {
   return (
     <div>
       <div className="relative flex items-center">
@@ -39,9 +45,17 @@ const Price = ({price}: {price: string}) => {
 };
 
 // Counter
-const Counter = ({max, counter, set}: {max: number, counter: number, set: Dispatch<SetStateAction<number>> }) => {
+const Counter = ({
+  max,
+  counter,
+  set,
+}: {
+  max: number;
+  counter: number;
+  set: Dispatch<SetStateAction<number>>;
+}) => {
   const hangleIncrement = () => {
-    if(counter < max){
+    if (counter < max) {
       set(counter + 1);
     }
   };
@@ -75,13 +89,23 @@ const ButtonPrimary = ({ icon, callback }: ButtonPrimaryProps) => {
 
 // Colors
 const Colors = (props: any) => {
-  const {color, setColor} = props;
+  const { color, setColor } = props;
   return (
     <div>
       <h3 className="text-[14px] font-[400]">colors</h3>
       <ul className="flex gap-[5px]">
-        <li onClick={() => setColor('white')} className={`${color === 'white' && 'border-yellow-500'} w-[30px] h-[30px] bg-white rounded-full border border-gray-300 cursor-pointer`}></li>
-        <li onClick={() => setColor('black')} className={`${color === 'black' && 'border-yellow-500 border'} w-[30px] h-[30px] bg-black rounded-full cursor-pointer`}></li>
+        <li
+          onClick={() => setColor("white")}
+          className={`${
+            color === "white" && "border-yellow-500"
+          } w-[30px] h-[30px] bg-white rounded-full border border-gray-300 cursor-pointer`}
+        ></li>
+        <li
+          onClick={() => setColor("black")}
+          className={`${
+            color === "black" && "border-yellow-500 border"
+          } w-[30px] h-[30px] bg-black rounded-full cursor-pointer`}
+        ></li>
         {/* <li className="w-[30px] h-[30px] bg-[#656B73] rounded-full"></li> */}
         {/* <li className="w-[30px] h-[30px] bg-[#468578] rounded-full"></li> */}
       </ul>
@@ -89,26 +113,39 @@ const Colors = (props: any) => {
   );
 };
 
-const shirtsArr = [{size: '', sizeL: "XS"},
-{size: '', sizeL: "S"},
-{size: '', sizeL: "M"},
-{size: '', sizeL: "L"},
-{size: '', sizeL: "XL"}
+const shirtsArr = [
+  { size: "", sizeL: "XS" },
+  { size: "", sizeL: "S" },
+  { size: "", sizeL: "M" },
+  { size: "", sizeL: "L" },
+  { size: "", sizeL: "XL" },
 ];
-const shortsArr = [{size: '', sizeL: "S"},
-{size: '', sizeL: "M"},
-{size: '', sizeL: "L"},
-{size: '', sizeL: "XL"}
+const shortsArr = [
+  { size: "", sizeL: "S" },
+  { size: "", sizeL: "M" },
+  { size: "", sizeL: "L" },
+  { size: "", sizeL: "XL" },
 ];
 
-const Sizes = ({type, size, setSize} : any) => {
-  const tmp = type === 0 ? shirtsArr : type === 1 ? shortsArr : [{size: '', sizeL: "L"}]
+const Sizes = ({ type, size, setSize }: any) => {
+  const tmp =
+    type === 0
+      ? shirtsArr
+      : type === 1
+      ? shortsArr
+      : [{ size: "", sizeL: "L" }];
   return (
     <div>
       <h3 className="text-[14px] font-[400]">Size</h3>
       <div className="grid grid-cols-5 grid-rows-2 gap-[10px]">
         {tmp.map((item) => (
-          <Size key={item.sizeL + " " + 1} size={item.size} sizeL={item.sizeL} state={size} callback={setSize} />
+          <Size
+            key={item.sizeL + " " + 1}
+            size={item.size}
+            sizeL={item.sizeL}
+            state={size}
+            callback={setSize}
+          />
         ))}
       </div>
       <p className="normal-case	p-[12px] font-[300] text-[#64A0C2] cursor-pointer">
@@ -117,38 +154,72 @@ const Sizes = ({type, size, setSize} : any) => {
     </div>
   );
 };
-const Size = ({size, sizeL, state, callback}: {size: string, sizeL: string, state:string, callback: any}) => {
+const Size = ({
+  size,
+  sizeL,
+  state,
+  callback,
+}: {
+  size: string;
+  sizeL: string;
+  state: string;
+  callback: any;
+}) => {
   return (
-    <div onClick={() => callback(sizeL)} className={`${sizeL === state && 'border-black'} p-[10px] text-center border border-[#F2F2F2] hover:border-[#1D1D1D] transition-all cursor-pointer`}>
+    <div
+      onClick={() => callback(sizeL)}
+      className={`${
+        sizeL === state && "border-black"
+      } p-[10px] text-center border border-[#F2F2F2] hover:border-[#1D1D1D] transition-all cursor-pointer`}
+    >
       <p className="text-[14px] font-[400]">{size}</p>
       <p className="text-[12px] font-[300] text-[#B3B3B3]">{sizeL}</p>
     </div>
   );
 };
 //Buy Now
-const BuyNowBlock = ({item, counter, color,size}: any) => {
-  const {price, name, id, description, imageUrl} = item;
-  const cartItem = {price, name, count: counter, id, description, image: imageUrl[0], color, size}
+const BuyNowBlock = ({ item, counter, color, size }: any) => {
+  const { price, name, id, description, imageUrl } = item;
+  const cartItem = {
+    price,
+    name,
+    count: counter,
+    id,
+    description,
+    image: imageUrl[0],
+    color,
+    size,
+  };
   const handleBuyClick = () => {
-    if(!localStorage.getItem('cart')){
-      localStorage.setItem('cart', JSON.stringify([cartItem]))
+    if (!localStorage.getItem("cart")) {
+      localStorage.setItem("cart", JSON.stringify([cartItem]));
       return;
     } else {
-      const tmp = JSON.parse(localStorage.getItem('cart')!)
-      const checker = tmp.some((item: any) => item.id === id && item.color === color && item.size === size);
-      if(checker){
-        const item = tmp.find(((item: any) => item.id === id && item.color === color && item.size === size))
+      const tmp = JSON.parse(localStorage.getItem("cart")!);
+      const checker = tmp.some(
+        (item: any) =>
+          item.id === id && item.color === color && item.size === size
+      );
+      if (checker) {
+        const item = tmp.find(
+          (item: any) =>
+            item.id === id && item.color === color && item.size === size
+        );
         item.count += counter;
-        localStorage.setItem('cart', JSON.stringify(tmp))
+        localStorage.setItem("cart", JSON.stringify(tmp));
         return;
       }
       tmp.push(cartItem);
-      localStorage.setItem('cart', JSON.stringify(tmp));
+      localStorage.setItem("cart", JSON.stringify(tmp));
     }
-  }
+  };
   return (
     <div className="flex gap-[10px]  sticky bottom-5">
-      <BtnPrimary callback={handleBuyClick} styles="w-full py-[15px]" text={"Buy now"} />
+      <BtnPrimary
+        callback={handleBuyClick}
+        styles="w-full py-[15px]"
+        text={"Buy now"}
+      />
       <Favorites />
     </div>
   );
