@@ -1,8 +1,10 @@
+'use client'
 import Image from "next/image";
 import { BtnPrimary } from "../BtnPrimary/BtnPrimary";
 import mock from "../../../public/assets/images/mock-2.png";
 import { LabelSale } from "../LabelSale/LabelSale";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface ProdCardSecondaryProps {
   link?: string;
@@ -12,9 +14,11 @@ interface ProdCardSecondaryProps {
 }
 
 export const ProdCardSecondary = ({ link, title = 'Contrast Bootcut Sweatpants', price, prodId }: ProdCardSecondaryProps) => {
+  const pathname = usePathname();
+  const locale = pathname.split('/')[1]
   return (
     <li className="uppercase flex flex-col max-w-[300px] gap-[15px]">
-      <Link href={`/product/${prodId}`}>
+      <Link href={`/${locale}/product/${prodId}`}>
         <div className="relative">
           <Image className="w-full h-full" width={1000} height={1000} src={link || mock} alt="mock" />
           {/* <LabelSale /> */}
