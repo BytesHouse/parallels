@@ -1,7 +1,6 @@
 import prisma from "@/lib/prisma";
 import { FillterDropdown } from "../FillterDropdown/FillterDropdown";
 import { FillteredList } from "../FillteredList/FillteredList";
-import { NextPageContext } from "next";
 import { headers } from "next/headers";
 
 async function getDataByName(name?: string) {
@@ -22,7 +21,7 @@ async function getAllData() {
 export const ProductList = async (props: any) => {
   const heads = headers();
   const pathname = heads.get("next-url");
-  let res = await getDataByName(pathname?.split("/")[2]);
+  let res = await getDataByName(pathname?.split("/")[3]);
   if (!res.length) {
     res = await getAllData();
   }
