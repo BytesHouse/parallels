@@ -12,9 +12,11 @@ import { LanguageSwitcher } from "../LanguageSwitcher/LanguageSwitcher";
 import { GoogleIcon } from "../SocialIcons/SocialIcons";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import { useTranslation } from 'react-i18next';
 
 export const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const { t } = useTranslation();
   const handleClickBurger = () => {
     setShowMenu(!showMenu);
   };
@@ -23,6 +25,7 @@ export const Header = () => {
       <div className="w-full flex flex-col items-center justify-center py-[30px] border-b">
         <div className="container flex justify-between px-[15px]">
           <LanguageSwitcher />
+          <p>{t('hello')}</p>
           <Link className="hidden md:flex" href="/">
             <Logo />
           </Link>
@@ -31,7 +34,7 @@ export const Header = () => {
           </Link>
           <div className="hidden md:flex items-center gap-[30px]">
             <SearchIcon />
-            <Link href={"/cart"}>
+            <Link href={"cart"}>
               <CartIcon />
             </Link>
             <div>

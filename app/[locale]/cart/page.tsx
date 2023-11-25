@@ -1,7 +1,7 @@
-import { Cart } from "../../src/components/Cart/Cart";
-import { Delivery } from "../../src/components/Delivery/Delivery";
-import { Footer } from "../../src/components/Footer/Footer";
-import { Header } from "../../src/components/Header/Header";
+import { Cart } from "../../../src/components/Cart/Cart";
+import { Delivery } from "../../../src/components/Delivery/Delivery";
+import { Footer } from "../../../src/components/Footer/Footer";
+import { Header } from "../../../src/components/Header/Header";
 import {redirect} from 'next/navigation'
 import { getServerSession } from "next-auth";
 

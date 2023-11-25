@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "prisma generate && next build",
-    "start": "next start",
+    "dev": "i18nexus pull && next dev",
+    "build": "i18nexus pull && prisma generate && next build",
+    "start": "i18nexus pull && next start",
     "lint": "next lint",
     "postinstall": "prisma generate"
   },
@@ -20,15 +20,20 @@
     "eslint": "8.50.0",
     "eslint-config-next": "13.5.2",
     "gsap": "^3.12.2",
+    "i18next": "^23.7.6",
+    "i18next-resources-to-backend": "^1.2.0",
     "next": "13.5.2",
     "next-auth": "^4.24.5",
+    "next-i18n-router": "^5.0.2",
     "postcss": "8.4.30",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-i18next": "^13.5.0",
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "i18nexus-cli": "^3.3.0",
     "prisma": "^5.5.2"
   },
   "prisma": {
