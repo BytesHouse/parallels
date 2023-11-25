@@ -11,7 +11,7 @@ export default async function page({ params: { locale } }: any) {
   const { t, options } = await initTranslations(locale, ['home']);
   const session = await getServerSession();
   if(!session || !session.user) {
-    redirect('api/auth/signin')
+    redirect('/api/auth/signin')
   }
   return (
     <>
