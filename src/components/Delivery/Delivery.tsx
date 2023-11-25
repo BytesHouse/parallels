@@ -26,12 +26,12 @@ export const Delivery = () => {
 };
 
 const CartItem = ({callback, item}: {callback?: any, item?: any}) => {
-  const {price, name, count, description, id, image} = item;
+  const {price, name, count, description, id, image, size} = item;
   return (
-    <li className="border-t py-[20px] flex justify-between">
-      <div className="flex gap-[20px]">
+    <li className=" border-b md:border-b-0 md:border-t py-[20px] flex justify-between">
+      <div className="flex flex-col md:flex-row gap-[5px] md:gap-[20px]">
         <Image width={150} height={150} className="w-[150px] h-[150px]" src={image} alt="test" />
-        <div className="flex gap-[25px] md:gap-[50px]">
+        <div className="flex gap-[25px] md:gap-[50px] items-center">
           <div>
             <p className="text-[12px] font-[300] uppercase">New season</p>
             <p className="text-[16px] font-[500] uppercase">
@@ -41,11 +41,11 @@ const CartItem = ({callback, item}: {callback?: any, item?: any}) => {
               Vendor code <span>1234</span>
             </p> */}
           </div>
-          <div>₪{(price * count)}</div>
-          <div>
+          <div>₪{(price * count).toFixed(1)}</div>
+          <div className="flex gap-[10px] md:block">
             <div>
               <p className="text-[12px] font-[300]">Size</p>
-              <p className="text-[12px] font-[500]">30</p>
+              <p className="text-[12px] font-[500]">{size}</p>
             </div>
             <div>
               <p className="text-[12px] font-[300]">Quantity</p>

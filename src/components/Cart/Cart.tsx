@@ -1,11 +1,13 @@
 "use client";
 import { useState } from "react";
 import { BtnPrimary } from "../BtnPrimary/BtnPrimary";
+import prisma from "@/lib/prisma";
 
 const initialState = {
   fullName: "",
   phone: "",
   email: "",
+  address: "",
   comment: "",
   delivery: "Courier",
   payment: "Cash",
@@ -23,12 +25,18 @@ export const Cart = () => {
     setPaymentMethod(method);
     setOrder({ ...order, [key]: value });
   };
-  let payOrder = [];
+  let payOrder: any = [];
   let totalPrice = 0;
   let deliveryPrice = 0;
-  if(localStorage.getItem('cart')){
-    payOrder = JSON.parse(localStorage.getItem('cart')!)
-    totalPrice = payOrder.reduce((acc: any, item: any) => acc + (item.price * item.count), totalPrice)
+  if (localStorage.getItem("cart")) {
+    payOrder = JSON.parse(localStorage.getItem("cart")!);
+    totalPrice = payOrder.reduce(
+      (acc: any, item: any) => acc + +(item.price * item.count).toFixed(1),
+      totalPrice
+    );
+  }
+  const handlerBuyNow = () => {
+    
   }
   return (
     <div className="sticky top-[20px] flex flex-col gap-[15px] md:gap-[30px] self-baseline">
@@ -67,6 +75,12 @@ export const Cart = () => {
         <input
           onChange={(e) => setOrder({ ...order, phone: e.target.value })}
           placeholder="Phone number*"
+          className="border-b outline-none"
+          type="text"
+        />
+        <input
+          onChange={(e) => setOrder({ ...order, address: e.target.value })}
+          placeholder="Address*"
           className="border-b outline-none"
           type="text"
         />
@@ -118,12 +132,18 @@ export const Cart = () => {
           </div>
         </div>
         <div>
-        <div className="flex justify-between border-t mt-[20px] pt-[20px]">
+          <div className="flex justify-between border-t mt-[20px] pt-[20px]">
             <span className="text-[12px] font-[300]">Total</span>
-            <span className="text-[12px] font-[500]">${totalPrice + deliveryPrice}</span>
+            <span className="text-[12px] font-[500]">
+              ₪{(totalPrice + deliveryPrice).toFixed(1)}
+            </span>
           </div>
         </div>
-        <BtnPrimary styles="h-[45px]" text={"buy now"} />
+        <BtnPrimary
+          callback={handlerBuyNow}
+          styles="h-[45px]"
+          text={"buy now"}
+        />
       </div>
     </div>
   );
