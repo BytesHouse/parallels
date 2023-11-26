@@ -1,3 +1,5 @@
+import { AboutGallery } from "../AboutGallery/AboutGallery";
+
 export const Story = () => {
   return (
     <div className="container mx-auto my-[30px] px-[15px] max-w-[768px] flex flex-col gap-[15px]">
@@ -8,8 +10,14 @@ export const Story = () => {
         - стать глобальной площадкой для моды, где встречаются творцы, кураторы
         и ценители стиля.
       </p>
-      <h2 className="text-center text-[25px] font-bold">О НАС</h2>
-      {/* Тут компонента фоток и описания */}
+      <h2 className="text-center text-[25px] my-[10px] font-bold">О НАС</h2>
+      <div className="container ">
+        <div className="flex mb-14 flex-row gap-5">
+          <AboutGallery />
+          <AboutGallery />
+          <AboutGallery />
+        </div>
+      </div>
     </div>
   );
 };
