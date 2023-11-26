@@ -5,8 +5,8 @@ import { useState } from "react";
 export const Delivery = () => {
   const [shippingCheck, setShippingCheck] = useState();
   let cart = [];
-  if(localStorage.getItem('cart')){
-    cart = JSON.parse(localStorage.getItem('cart')!)
+  if (localStorage.getItem("cart")) {
+    cart = JSON.parse(localStorage.getItem("cart")!);
   }
   return (
     <div className="pb-[20px]">
@@ -16,14 +16,15 @@ export const Delivery = () => {
           Ship from <span className="text-black">Israel</span>
         </p>
       </div>
-      <ul className="flex flex-col mt-[20px]">
+      <ul className="flex flex-col  mt-[20px]">
         {cart.map((item: any) => {
-          return <CartItem item={item} key={String(item.name)}/>
+          return <CartItem item={item} key={String(item.name)} />;
         })}
       </ul>
     </div>
   );
 };
+
 
 const CartItem = ({callback, item}: {callback?: any, item?: any}) => {
   const {price, name, count, description, id, image, size} = item;
@@ -34,9 +35,7 @@ const CartItem = ({callback, item}: {callback?: any, item?: any}) => {
         <div className="flex gap-[25px] md:gap-[50px] items-center">
           <div>
             <p className="text-[12px] font-[300] uppercase">New season</p>
-            <p className="text-[16px] font-[500] uppercase">
-              {name}
-            </p>
+            <p className="text-[16px] font-[500] uppercase">{name}</p>
             {/* <p className="text-[14px] font-[300]">
               Vendor code <span>1234</span>
             </p> */}
@@ -54,7 +53,9 @@ const CartItem = ({callback, item}: {callback?: any, item?: any}) => {
           </div>
         </div>
       </div>
-      <div className="cursor-pointer" onClick={callback}>X</div>
+      <div className="cursor-pointer" onClick={callback}>
+        X
+      </div>
     </li>
   );
 };

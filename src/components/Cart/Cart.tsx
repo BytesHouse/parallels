@@ -36,7 +36,6 @@ export const Cart = () => {
     );
   }
   const handlerBuyNow = () => {
-    
   }
   return (
     <div className="sticky top-[20px] flex flex-col gap-[15px] md:gap-[30px] self-baseline">

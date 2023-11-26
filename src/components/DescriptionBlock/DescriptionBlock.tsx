@@ -19,9 +19,9 @@ export const DescriptionBlock = ({ item }: any) => {
   const [size, setSize] = useState("");
   // const [type, setType] = useState(categoryId)
   return (
-    <div className="uppercase max-w-[410px] flex flex-col gap-[30px]">
-      <p className="text-[14px] font-[400]">New season</p>
-      <h1>{name}</h1>
+    <div className="uppercase max-w-[410px] mt-[84px] mb-[50px] flex flex-col gap-[30px]">
+      <p className="text-[12px] font-[300]">New season</p>
+      <h1 className="font-[500] uppercase">{name}</h1>
       <Price price={price} />
       <Counter counter={counter} set={setCounter} max={count} />
       <Colors color={color} setColor={setColor} />
@@ -191,7 +191,7 @@ const BuyNowBlock = ({ item, counter, color, size }: any) => {
     color,
     size,
   };
-  const handleBuyClick = () => {
+         const handleBuyClick = () => {
     if (color && size) {
       if (!localStorage.getItem("cart")) {
         localStorage.setItem("cart", JSON.stringify([cartItem]));
