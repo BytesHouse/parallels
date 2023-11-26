@@ -12,9 +12,6 @@ export const Delivery = () => {
   if (localStorage.getItem("cart")) {
     cart = JSON.parse(localStorage.getItem("cart")!);
   }
-  useEffect(() =>{
-    setCarts(cart)
-  },[localStorage,cart])
   return (
     <div className="pb-[20px]">
       <div className="flex flex-col gap-[15px] md:gap-[30px] border-b md:border-b-0 pb-[20px] md:pb-0">
@@ -24,8 +21,8 @@ export const Delivery = () => {
         </p>
       </div>
       <ul className="flex flex-col  mt-[20px]">
-        {cart.map((item: any) => {
-          return <CartItem item={item} key={String(item.name)} />;
+        {cart.map((item: any, index: number) => {
+          return <CartItem callback={setCarts} item={item} key={String(item.name) + index} />;
         })}
       </ul>
     </div>
@@ -42,8 +39,8 @@ const CartItem = ({ callback, item }: { callback?: any; item?: any }) => {
     if(data){
       let array = JSON.parse(data);
       array = array.filter((item: any) => item.size !== size || item.color != color || item.id != id );
-      console.log(array)
       localStorage.setItem('cart', JSON.stringify(array));
+    callback(data)
     }
   }
   return (
