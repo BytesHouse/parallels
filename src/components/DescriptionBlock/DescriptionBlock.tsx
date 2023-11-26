@@ -10,6 +10,7 @@ import { LabelSale } from "../LabelSale/LabelSale";
 import { IconDecrement } from "../IconDecrement/IconDecrement";
 import { IconIncrement } from "../IconIncrement/IconIncrement";
 import { BtnPrimary } from "../BtnPrimary/BtnPrimary";
+import { toast } from "react-toastify";
 
 export const DescriptionBlock = ({ item }: any) => {
   const { price, name, id, count, categoryId } = item;
@@ -190,27 +191,58 @@ const BuyNowBlock = ({ item, counter, color, size }: any) => {
     color,
     size,
   };
-  const handleBuyClick = () => {
-    if (!localStorage.getItem("cart")) {
-      localStorage.setItem("cart", JSON.stringify([cartItem]));
-      return;
-    } else {
-      const tmp = JSON.parse(localStorage.getItem("cart")!);
-      const checker = tmp.some(
-        (item: any) =>
-          item.id === id && item.color === color && item.size === size
-      );
-      if (checker) {
-        const item = tmp.find(
+         const handleBuyClick = () => {
+    if (color && size) {
+      if (!localStorage.getItem("cart")) {
+        localStorage.setItem("cart", JSON.stringify([cartItem]));
+        toast("Product added", {
+          hideProgressBar: true,
+          autoClose: 2000,
+          type: "success",
+        });
+        return;
+      } else {
+        const tmp = JSON.parse(localStorage.getItem("cart")!);
+        const checker = tmp.some(
           (item: any) =>
             item.id === id && item.color === color && item.size === size
         );
-        item.count += counter;
+        if (checker) {
+          const item = tmp.find(
+            (item: any) =>
+              item.id === id && item.color === color && item.size === size
+          );
+          item.count += counter;
+          localStorage.setItem("cart", JSON.stringify(tmp));
+          toast("Product updated", {
+            hideProgressBar: true,
+            autoClose: 2000,
+            type: "success",
+          });
+          return;
+        }
+        toast("Product added", {
+          hideProgressBar: true,
+          autoClose: 2000,
+          type: "success",
+        });
+        tmp.push(cartItem);
         localStorage.setItem("cart", JSON.stringify(tmp));
-        return;
       }
-      tmp.push(cartItem);
-      localStorage.setItem("cart", JSON.stringify(tmp));
+    }
+    if(!color){
+      toast("Choose Color", {
+        hideProgressBar: true,
+        autoClose: 2000,
+        type: "success",
+      } )
+    }
+    if(!size){
+      toast("Choose size", {
+        hideProgressBar: true,
+        autoClose: 2000,
+        type: "success",
+      } )
     }
   };
   return (

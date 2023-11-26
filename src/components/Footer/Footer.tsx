@@ -15,8 +15,8 @@ export const Footer = () => {
   const pathname = usePathname();
   const locale = pathname.split('/')[1]
   return (
-    <footer className="py-[50px] md:px-[75px] w-full bg-[#1D1D1D] text-white flex">
-      <div className="container justify-center px-[15px] md:px-[0] mx-auto flex flex-col gap-[30px]">
+    <footer className="py-[50px] px-[20px] md:px-[75px] w-full bg-[#1D1D1D] text-white flex">
+      <div className="container justify-center md:px-[0] mx-auto flex flex-col gap-[30px]">
         <div className="flex flex-col gap-[30px] md:flex-row justify-between text-[12px] font-[300]">
           <FooterLogo />
         </div>

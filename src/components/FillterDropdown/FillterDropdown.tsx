@@ -4,7 +4,7 @@ import { FillterArrowIcon } from "../FillterArrowIcon/FillterArrowIcon"
 
 interface FillterDropdownProps {
     text: string
-    array: any[]
+    array: string[]
 }
 
 export const FillterDropdown = ({ text, array }: FillterDropdownProps) => {
@@ -17,15 +17,12 @@ export const FillterDropdown = ({ text, array }: FillterDropdownProps) => {
             <p className="text-[14px] font-[400]">{text}</p>
             <FillterArrowIcon />
         </div>
-        {isOpen ? <MenuDrop /> : <></>}
+        {isOpen ? <MenuDrop texts={array}/> : <></>}
     </div>
 }
 
-export const MenuDrop = () => {
+export const MenuDrop = ({texts}: {texts: string[]}) => {
     return <ul className="pt-[10px] pb-[15px] text-[12px] font-[300] flex flex-col gap-[10px]">
-        <li>Cargo pants</li>
-        <li>Denim</li>
-        <li>Pants</li>
-        <li>Handbags</li>
+        {texts.map((item:any) => <li key={item}>{item}</li>)}
     </ul>
 }

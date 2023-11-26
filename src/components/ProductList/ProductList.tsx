@@ -1,7 +1,6 @@
 import prisma from "@/lib/prisma";
 import { FillterDropdown } from "../FillterDropdown/FillterDropdown";
 import { FillteredList } from "../FillteredList/FillteredList";
-import { NextPageContext } from "next";
 import { headers } from "next/headers";
 
 async function getDataByName(name?: string) {
@@ -22,7 +21,7 @@ async function getAllData() {
 export const ProductList = async (props: any) => {
   const heads = headers();
   const pathname = heads.get("next-url");
-  let res = await getDataByName(pathname?.split("/")[2]);
+  let res = await getDataByName(pathname?.split("/")[3]);
   if (!res.length) {
     res = await getAllData();
   }
@@ -32,10 +31,10 @@ export const ProductList = async (props: any) => {
       <div className="grid grid-cols-1 gap-[20px] md:gap-0 md:grid-cols-[1fr_3fr] pt-[30px]">
         <div className="max-w-[250px] flex flex-col gap-[15px]">
           {/* <FillterDropdown text={"Category"} array={[]} /> */}
-          <FillterDropdown text={"Color"} array={[]} />
+          <FillterDropdown text={"Color"} array={["Black", 'White']} />
           {/* <FillterDropdown text={"Denim features"} array={[]} /> */}
           {/* <FillterDropdown text={"Denim fit"} array={[]} /> */}
-          <FillterDropdown text={"Size"} array={[]} />
+          <FillterDropdown text={"Size"} array={["XS - Extra Small","S - Small",  "M - Medium", "L - Large", "XL - Extra Large"]} />
         </div>
         <FillteredList response={res} />
       </div>

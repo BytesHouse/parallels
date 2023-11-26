@@ -45,23 +45,28 @@ export const Header = () => {
             <div>
               <AuthButton />
             </div>
-            <button onClick={handleClickBurger} className="flex md:hidden">
+            
+          </div>
+          <button onClick={handleClickBurger} className="flex md:hidden">
               <BurgerIcon />
             </button>
-          </div>
         </div>
       </div>
       <nav>
         <ul
           className={`border-b ${
             showMenu ? "flex" : "hidden"
-          } right-0 p-[25px] bg-white absolute md:static gap-[15px] text-end md:text-start md:flex flex-col md:flex-row md:py-[10px] md:justify-center md:gap-[60px] md:text-[12px] uppercase font-[300] `}
+          } z-10 right-0 p-[25px] bg-white absolute md:static gap-[15px] text-end md:text-start md:flex flex-col md:flex-row md:py-[10px] md:justify-center md:gap-[60px] md:text-[12px] uppercase font-[300] `}
         >
           {navItems.map((item) => (
             <li key={item.text}>
               <Link locale={locale} href={`/${locale}${item.link}`}>{t(item.text)}</Link>
             </li>
           ))}
+          <li className="flex md:hidden justify-center gap-[10px]">
+          <Link href={`/${locale}/cart`}><CartIcon /></Link>
+          <Link href={`/${locale}/cart`}><AuthButton /></Link>
+          </li>
         </ul>
       </nav>
     </header>
