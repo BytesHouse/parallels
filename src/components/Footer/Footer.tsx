@@ -15,7 +15,7 @@ export const Footer = () => {
   const pathname = usePathname();
   const locale = pathname.split('/')[1]
   return (
-    <footer className="py-[50px] px-[20px] md:px-[75px] w-full bg-[#1D1D1D] text-white flex">
+    <footer className="py-[50px] px-[20px] md:px-[75px] w-full bg-[#1D1D1D] text-white flex flex-col gap-[30px] md:gap-[0] md:flex-row">
       <div className="container justify-center md:px-[0] mx-auto flex flex-col gap-[30px]">
         <div className="flex flex-col gap-[30px] md:flex-row justify-between text-[12px] font-[300]">
           <FooterLogo />
@@ -34,22 +34,22 @@ export const Footer = () => {
         </div>
       </div>
       <div className="flex-1 flex flex-col justify-start md:justify-end gap-[30px]">
-        <Link href="mailto:parallelswears@gmail.com" className="flex gap-[15px] justify-end">
+        <Link href="mailto:parallelswears@gmail.com" className="flex gap-[15px] md:justify-end">
           parallelswears@gmail.com
           <GoogleIcon />
         </Link>
         <Link
           href="tel:+972547282050"
-          className="flex gap-[15px] justify-end"
+          className="flex gap-[15px] md:justify-end"
         >
           +972547282050
           <IconPhone />
         </Link>
-        <Link target="_blank" href="https://instagram.com/parallels_wear_israel?igshid=MzMyNGUyNmU2YQ" className="flex gap-[15px] justify-end">
+        <Link target="_blank" href="https://instagram.com/parallels_wear_israel?igshid=MzMyNGUyNmU2YQ" className="flex gap-[15px] md:justify-end">
           Parallels
           <InstagramIcon />
         </Link>
-        <div className="flex gap-[15px] justify-end">
+        <div className="flex gap-[15px] md:justify-end">
         יוספטל 6 קריית מוצקין 
           <IconAddress />
         </div>

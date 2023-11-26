@@ -19,9 +19,9 @@ export const DescriptionBlock = ({ item }: any) => {
   const [size, setSize] = useState("");
   // const [type, setType] = useState(categoryId)
   return (
-    <div className="uppercase max-w-[410px] mt-[84px] mb-[50px] flex flex-col gap-[30px]">
-      <p className="text-[12px] font-[300]">New season</p>
-      <h1 className="font-[500] uppercase">{name}</h1>
+    <div className="uppercase md:max-w-[410px] flex flex-col gap-[30px]">
+      <p className="text-[12px] font-[300] md:text-[14px] md:font-[400]">New season</p>
+      <h1 className="text-[16px] font-[500]">{name}</h1>
       <Price price={price} />
       <Counter counter={counter} set={setCounter} max={count} />
       <Colors color={color} setColor={setColor} />
@@ -40,7 +40,7 @@ const Price = ({ price }: { price: string }) => {
         {/* <p className="text-[24px] font-[500] text-[#EA0022] leading-3">₪223</p> */}
         {/* <LabelSale isAbsolute={false} color="bg-[#EA0022]" text="-70%" /> */}
       </div>
-      <p>₪{price}</p>
+      <p className="text-[24px] font-[500]">₪{price}</p>
     </div>
   );
 };
@@ -61,10 +61,10 @@ const Counter = ({
     }
   };
   const hangleDecrement = () => {
-    counter && set(counter - 1);
+    counter && counter >1 && set(counter - 1);
   };
   return (
-    <div>
+    <div className="flex flex-col gap-[15px]">
       <h2 className="text-[14px] font-[400]">Quantity</h2>
       <div className="flex items-center gap-[15px]">
         <ButtonPrimary icon={<IconDecrement />} callback={hangleDecrement} />
@@ -92,7 +92,7 @@ const ButtonPrimary = ({ icon, callback }: ButtonPrimaryProps) => {
 const Colors = (props: any) => {
   const { color, setColor } = props;
   return (
-    <div>
+    <div className="flex flex-col gap-[15px]">
       <h3 className="text-[14px] font-[400]">colors</h3>
       <ul className="flex gap-[5px]">
         <li
@@ -136,7 +136,7 @@ const Sizes = ({ type, size, setSize }: any) => {
       ? shortsArr
       : [{ size: "", sizeL: "L" }];
   return (
-    <div>
+    <div className="flex flex-col gap-[15px]">
       <h3 className="text-[14px] font-[400]">Size</h3>
       <div className="grid grid-cols-5 grid-rows-2 gap-[10px]">
         {tmp.map((item) => (
@@ -252,7 +252,7 @@ const BuyNowBlock = ({ item, counter, color, size }: any) => {
         styles="w-full py-[15px]"
         text={"Buy now"}
       />
-      <Favorites />
+      {/* <Favorites /> */}
     </div>
   );
 };
@@ -310,7 +310,7 @@ interface IdescriptItem {
 }
 
 const descriptionList = [
-  { type: "Vendor code", value: "50845125" },
+  // { type: "Vendor code", value: "50845125" },
   { type: "Bag Type", value: "Tote" },
   { type: "Color", value: "Black, Gray, Beige, White" },
   { type: "Material", value: "Canvas" },

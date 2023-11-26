@@ -68,31 +68,31 @@ export const Cart = () => {
         <input
           onChange={(e) => setOrder({ ...order, fullName: e.target.value })}
           placeholder="Full Name*"
-          className="border-b outline-none"
+          className="py-[10px] border-b outline-none"
           type="text"
         />
         <input
           onChange={(e) => setOrder({ ...order, phone: e.target.value })}
           placeholder="Phone number*"
-          className="border-b outline-none"
+          className="py-[10px] border-b outline-none"
           type="text"
         />
         <input
           onChange={(e) => setOrder({ ...order, address: e.target.value })}
           placeholder="Address*"
-          className="border-b outline-none"
+          className="py-[10px] border-b outline-none"
           type="text"
         />
         <input
           onChange={(e) => setOrder({ ...order, email: e.target.value })}
           placeholder="Email*"
-          className="border-b outline-none"
+          className="py-[10px] border-b outline-none"
           type="text"
         />
         <textarea
           onChange={(e) => setOrder({ ...order, comment: e.target.value })}
           placeholder="Comment"
-          className="border-b outline-none resize-none"
+          className="py-[10px] border-b outline-none resize-none"
           name=""
           id=""
           cols={30}

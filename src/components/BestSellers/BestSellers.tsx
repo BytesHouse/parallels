@@ -12,8 +12,8 @@ export  const BestSellers = async ({products}: any) => {
     const res = await getData()
     return <section className="bg-[#F2F2F2] overflow-x-scroll w-full py-[50px] flex flex-col gap-[50px] ">
         <div className="container mx-auto flex flex-col gap-[50px] md:px-[20px]">
-        <HeadingSection text="HOT OFFERS" />
-        <div className="overflow-x-scroll customScroll">
+        <HeadingSection text="HOT OFFERS" id={"hot_offers"} />
+        <div id="hot_offers" className="overflow-x-scroll customScroll">
             <ul className="w-max flex px-[15px] md:px-[0] container mx-auto gap-[30px]">
                 {res.map(item => <ProdCardSecondary prodId={item.id} key={item.name} title={item.name} link={item.imageUrl[0]} price={item.price} />)}
             </ul>
