@@ -11,8 +11,11 @@ export const Story = () => {
         и ценители стиля.
       </p>
       <h2 className="text-center text-[25px] my-[10px] font-bold">О НАС</h2>
-      <div className="container ">
-        <div className="flex mb-14 flex-row gap-5">
+      <div className="container mx-auto ">
+        <div className="grid gap-4 grid-cols-3 grid-rows-3">
+          <AboutGallery />
+          <AboutGallery />
+          <AboutGallery />
           <AboutGallery />
           <AboutGallery />
           <AboutGallery />

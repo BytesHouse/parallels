@@ -22,27 +22,35 @@ export const Delivery = () => {
       </div>
       <ul className="flex flex-col  mt-[20px]">
         {cart.map((item: any, index: number) => {
-          return <CartItem callback={setCarts} item={item} key={String(item.name) + index} />;
+          return (
+            <CartItem
+              callback={setCarts}
+              item={item}
+              key={String(item.name) + index}
+            />
+          );
         })}
       </ul>
     </div>
   );
 };
 
-
 const CartItem = ({ callback, item }: { callback?: any; item?: any }) => {
   const { price, name, count, description, id, image, size, color } = item;
   const pathname = usePathname();
-  const locale = pathname.split('/')[1];
+  const locale = pathname.split("/")[1];
   const handleDeleteProduct = () => {
-    const data = localStorage.getItem('cart');
-    if(data){
+    const data = localStorage.getItem("cart");
+    if (data) {
       let array = JSON.parse(data);
-      array = array.filter((item: any) => item.size !== size || item.color != color || item.id != id );
-      localStorage.setItem('cart', JSON.stringify(array));
-    callback(data)
+      array = array.filter(
+        (item: any) =>
+          item.size !== size || item.color != color || item.id != id
+      );
+      localStorage.setItem("cart", JSON.stringify(array));
+      callback(data);
     }
-  }
+  };
   return (
     <li className="md:px-[0] border-b md:border-b-0 md:border-t py-[20px] flex justify-between">
       <div className="flex flex-row gap-[20px]">
@@ -56,17 +64,19 @@ const CartItem = ({ callback, item }: { callback?: any; item?: any }) => {
           />
         </Link>
         <div className="flex flex-col md:flex-row gap-[10px] md:gap-[50px] md:items-center">
-          <div>
+          <div className="flex-shrink-0 md:w-[100px]">
             <p className="text-[12px] font-[300] uppercase">New season</p>
-            <p className="text-[16px] font-[500] uppercase mt-[10px]">{name} <span className="text-gray-400">{color}</span></p>
+            <p className="text-[16px] font-[500] uppercase mt-[10px]">
+              {name} <span className="text-gray-400">{color}</span>
+            </p>
           </div>
           <div>₪{(price * count).toFixed(1)}</div>
-          <div className="flex gap-[10px] md:block">
-            <div>
+          <div className="flex gap-[10px] md:flex-col">
+            <div className="flex-1">
               <p className="text-[12px] font-[300]">Size</p>
               <p className="text-[12px] font-[500]">{size}</p>
             </div>
-            <div>
+            <div className="flex-1">
               <p className="text-[12px] font-[300]">Quantity</p>
               <p className="text-[12px] font-[500]">{count}</p>
             </div>
