@@ -27,7 +27,7 @@ export const ProductList = async (props: any) => {
   }
   return (
     <section className="container px-[15px] md:px-[0] mx-auto pt-[20px] pb-[50px] flex flex-col">
-      <div className="text-[24px] font-medium">Filters</div>
+      <div className="text-[24px] font-medium uppercase">Filters</div>
       <div className="grid grid-cols-1 gap-[20px] md:gap-0 md:grid-cols-[1fr_3fr] pt-[30px]">
         <div className="max-w-[250px] flex flex-col gap-[15px]">
           {/* <FillterDropdown text={"Category"} array={[]} /> */}
