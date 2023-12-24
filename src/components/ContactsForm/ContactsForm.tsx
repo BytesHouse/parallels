@@ -7,6 +7,7 @@ export type FormData = {
   email: string;
   phone: string;
   message: string;
+  body?: string;
 };
 
 export const ContactsForm = () => {

@@ -1,19 +1,32 @@
 "use client";
 import { useState } from "react";
 import { BtnPrimary } from "../BtnPrimary/BtnPrimary";
-import prisma from "@/lib/prisma";
+import { sendEmail } from "@/src/utils/send-email";
+import { useRouter } from "next/navigation";
 
 const initialState = {
-  fullName: "",
+  name: "",
   phone: "",
   email: "",
   address: "",
-  comment: "",
+  message: "",
   delivery: "Courier",
   payment: "Cash",
+  body: [] as any,
+};
+export type FormDataOrder = {
+  name: string;
+  phone: string;
+  email: string;
+  address: string;
+  message: string;
+  delivery: string;
+  payment: string;
+  body: any;
 };
 
 export const Cart = () => {
+  const router = useRouter()
   const [deliveryMethod, setDeliveryMethod] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState(0);
   const [order, setOrder] = useState(initialState);
@@ -35,8 +48,41 @@ export const Cart = () => {
       totalPrice
     );
   }
-  const handlerBuyNow = () => {
-  }
+
+  const handlerBuyNow = async () => {
+    if (!order.email || !order.name || !order.address || !order.phone) {
+      alert("Enter all requeried fields");
+      return;
+    }
+    let string = `
+                You have a new order
+      -----------------------------------------
+      ${JSON.parse(localStorage.getItem("cart")!).map(
+        (item: any) => `
+      Product: ${item.name} 
+      Count:   ${item.count}
+      Size:    ${item.size}
+      Color:   ${item.color}
+      `
+      )}
+      -----------------------------------------
+      Total Price:     ${totalPrice}
+      Delivery Method: ${order.delivery}
+      Payment Method:  ${order.payment}
+      Contact Address: ${order.address}
+      Phone Number:    ${order.phone}
+    `;
+    const tmp = order;
+    tmp.message = order.message + " " + string;
+    await sendEmailTest(tmp);
+    localStorage.removeItem("cart");
+    setTimeout(() => {
+      router.push('/')
+    }, 1500)
+  };
+  const sendEmailTest = (tmp: any) => {
+    sendEmail(tmp);
+  };
   return (
     <div className="sticky top-[20px] flex flex-col gap-[15px] md:gap-[30px] self-baseline">
       <div>
@@ -66,7 +112,7 @@ export const Cart = () => {
       <div className="flex flex-col gap-[20px]">
         <p className="uppercase text-[16px] font-[500]">Contacts</p>
         <input
-          onChange={(e) => setOrder({ ...order, fullName: e.target.value })}
+          onChange={(e) => setOrder({ ...order, name: e.target.value })}
           placeholder="Full Name*"
           className="py-[10px] border-b outline-none"
           type="text"
@@ -90,7 +136,7 @@ export const Cart = () => {
           type="text"
         />
         <textarea
-          onChange={(e) => setOrder({ ...order, comment: e.target.value })}
+          onChange={(e) => setOrder({ ...order, message: e.target.value })}
           placeholder="Comment"
           className="py-[10px] border-b outline-none resize-none"
           name=""

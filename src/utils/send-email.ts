@@ -1,6 +1,7 @@
+import { FormDataOrder } from "../components/Cart/Cart";
 import { FormData } from "../components/ContactsForm/ContactsForm";
 
-export const sendEmail = (data: FormData) => {
+export const sendEmail = (data: FormData | FormDataOrder) => {
     const apiEndpoint = '/api/email';
 
   fetch(apiEndpoint, {

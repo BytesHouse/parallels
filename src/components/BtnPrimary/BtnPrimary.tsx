@@ -2,7 +2,7 @@ import { MouseEventHandler } from "react";
 
 interface BtnPrimaryProps {
   text: string;
-  callback?: MouseEventHandler;
+  callback?: MouseEventHandler | any;
   styles?: string;
 }
 

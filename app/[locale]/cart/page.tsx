@@ -9,10 +9,10 @@ import TranslationsProvider from "@/src/components/TranslationsProvider/Translat
 
 export default async function page({ params: { locale } }: any) {
   const { t, options } = await initTranslations(locale, ['home']);
-  const session = await getServerSession();
-  if(!session || !session.user) {
-    redirect('/api/auth/signin')
-  }
+  // const session = await getServerSession();
+  // if(!session || !session.user) {
+  //   redirect('/api/auth/signin')
+  // }
   return (
     <>
     <TranslationsProvider namespaces={options.ns} locale={locale}>

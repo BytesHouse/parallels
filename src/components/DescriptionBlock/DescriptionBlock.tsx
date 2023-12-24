@@ -19,7 +19,7 @@ export const DescriptionBlock = ({ item }: any) => {
   const [size, setSize] = useState("");
   // const [type, setType] = useState(categoryId)
   return (
-    <div className="uppercase md:max-w-[410px] flex flex-col gap-[30px]">
+    <div className="uppercase relative z-1 bg-white md:max-w-[410px] flex flex-col gap-[30px]">
       <p className="text-[12px] font-[300] md:text-[14px] md:font-[400]">New season</p>
       <h1 className="text-[16px] font-[500]">{name}</h1>
       <Price price={price} />
