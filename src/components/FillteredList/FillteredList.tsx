@@ -14,7 +14,7 @@ interface FillteredListProps {
 
 export const FillteredList = ({ response }: FillteredListProps) => {
   return (
-    <ul className="max-w-[960px] grid grid-cols-2 md:grid-cols-3 gap-[30px]">
+    <ul className="max-w-[960px] grid md:grid-cols-3 gap-[30px]">
       {response.map(item => <ProdCardSecondary prodId={item.id} key={item.name} title={item.name} link={item.imageUrl[0]} price={item.price} />)}
     </ul>
   );

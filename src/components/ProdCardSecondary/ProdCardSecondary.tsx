@@ -17,7 +17,7 @@ export const ProdCardSecondary = ({ link, title = 'Contrast Bootcut Sweatpants',
   const pathname = usePathname();
   const locale = pathname.split('/')[1]
   return (
-    <li className="uppercase flex flex-col min-w-[300px] max-w-[300px] gap-[15px]">
+    <li className="uppercase flex flex-col min-w-[300px] max-w-[100%] gap-[15px]">
       <Link href={`/${locale}/product/${prodId}`}>
         <div className="relative">
           <Image className="w-full h-full" width={1000} height={1000} src={link || mock} alt="mock" />
