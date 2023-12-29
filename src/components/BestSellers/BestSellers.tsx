@@ -14,7 +14,7 @@ export  const BestSellers = async ({products}: any) => {
         <div className="container mx-auto flex flex-col gap-[50px] md:px-[20px]">
         <HeadingSection text="HOT OFFERS" id={"hot_offers"} />
         <div id="hot_offers" className="overflow-x-scroll customScroll">
-            <ul className="w-max flex px-[15px] md:px-[0] container mx-auto gap-[30px]">
+            <ul className="max-w-[300px] min-w-[300px] flex px-[15px] md:px-[0] container gap-[30px]">
                 {res.map(item => <ProdCardSecondary prodId={item.id} key={item.name} title={item.name} link={item.imageUrl[0]} price={item.price} />)}
             </ul>
         </div>
