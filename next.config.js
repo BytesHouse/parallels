@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['www.stoneycreekhunting.co.nz', 'themoviedb.org', 'i.ibb.co', 'lh3.googleusercontent.com'],
+    domains: ['www.stoneycreekhunting.co.nz', 'themoviedb.org', 'i.ibb.co','ibb.co', 'lh3.googleusercontent.com'],
   },
   env: {
     ADMIN: 'VladKyr',
