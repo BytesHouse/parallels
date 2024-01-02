@@ -132,7 +132,7 @@ const Sizes = ({ type, size, setSize }: any) => {
   const tmp =
     type === 0
       ? shirtsArr
-      : type === 1
+      : type === 1 || type === 4 || type === 3
       ? shortsArr
       : [{ size: "", sizeL: "L" }];
   return (
