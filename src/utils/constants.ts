@@ -18,11 +18,11 @@ export const linksFooter = [
 
 export const navItems = [
   { text: "new", link: "/catalog/new" },
-  // { text: "DENIM", link: '/catalog' },
+  { text: "denim", link: '/catalog/denim' },
+  { text: "pants", link: "/catalog/pants" },
   { text: "shorts", link: "/catalog/shorts" },
   { text: "shirts", link: "/catalog/shirts" },
   { text: "handbags", link: "/catalog/handbags" },
-  // { text: "Every day basics", link: '/catalog' },
-  { text: "sale", link: "/catalog/sale" },
-  { text: "coming_soon", link: "/catalog/soon" },
+  { text: "hoodie", link: '/catalog/hoodie' },
+  // { text: "sale", link: "/catalog/sale" },
 ];

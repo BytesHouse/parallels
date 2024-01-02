@@ -172,3 +172,76 @@ body {
     bottom: 10px;
   }
 }
+
+#animateted-text {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  font-family: Avenir Next, Helvetica Neue, Helvetica, Tahoma, sans-serif;
+  font-size: 1em;
+  font-weight: 700;
+  text-align: center;
+}
+#animateted-text span {
+  display: inline-block;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 500;
+  -webkit-font-smoothing: antialiased;
+}
+#animateted-text span::before,
+#animateted-text span::after {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: -1px;
+  transform-origin: left top;
+  transition: all ease-out 0.3s;
+  content: attr(data-text);
+}
+#animateted-text span::before {
+  z-index: 1;
+  color: rgba(0,0,0,0.2);
+  transform: scale(1.1, 1) skew(0deg, 20deg);
+}
+#animateted-text span::after {
+  z-index: 2;
+  color: whitesmoke;
+  text-shadow: -1px 0 1px black, 1px 0 1px gray;
+  transform: rotateY(-40deg);
+}
+#animateted-text span:hover::before {
+  transform: scale(1.1, 1) skew(0deg, 5deg);
+}
+#animateted-text span:hover::after {
+  transform: rotateY(-10deg);
+}
+#animateted-text span + span {
+  margin-left: 0.3em;
+}
+@media (min-width: 20em) {
+  #animateted-text {
+    font-size: 2em;
+  }
+  #animateted-text span::before,
+  #animateted-text span::after {
+    display: block;
+  }
+}
+@media (min-width: 30em) {
+  #animateted-text {
+    font-size: 3em;
+  }
+}
+@media (min-width: 40em) {
+  #animateted-text {
+    font-size: 5em;
+  }
+}
+@media (min-width: 60em) {
+  #animateted-text {
+    font-size: 8em;
+  }
+}
