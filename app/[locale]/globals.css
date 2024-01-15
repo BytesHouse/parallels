@@ -151,7 +151,7 @@ body {
   text-align: center;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 32px;
+  font-size: 14px;
   text-transform: uppercase;
   cursor: default;
 }
@@ -179,11 +179,28 @@ body {
   top: 50%;
   transform: translateY(-50%);
   color: #fff;
-  font-family: Avenir Next, Helvetica Neue, Helvetica, Tahoma, sans-serif;
+  /* font-family: Avenir Next, Helvetica Neue, Helvetica, Tahoma, sans-serif; */
   font-size: 1em;
   font-weight: 700;
   text-align: center;
+  animation: text 3s 1;
 }
+
+@keyframes text{
+  0%{
+    color: #000;
+    margin-bottom: -40px;
+  }
+  30%{
+    letter-spacing: 25px;
+    margin-bottom: -40px;
+  }
+  85%{
+    letter-spacing: 8px;
+    margin-bottom: -40px;
+  }
+}
+
 #animateted-text span {
   display: inline-block;
   position: relative;

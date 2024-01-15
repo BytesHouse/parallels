@@ -25,6 +25,7 @@ export default async function  Home({ params: { locale } }: any) {
         <main className="flex min-h-screen flex-col items-center justify-between">
           <p className="absolute"></p>
           <div className="relative">
+          <div className="absolute top-0 right-0 left-0 bottom-0 bg-black opacity-80"></div>
           <TextReveal />
           <Image src={bg} alt="bg" className="w-screen md:h-screen bg-cover bg-center" />
           <p className={showText ? 'active' : '' } id="colorText">A brand that combines quality, minimalism and abstraction.</p>
