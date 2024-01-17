@@ -21,8 +21,8 @@ export const navItems = [
   { text: "denim", link: '/catalog/denim' },
   { text: "pants", link: "/catalog/pants" },
   { text: "shorts", link: "/catalog/shorts" },
-  { text: "shirts", link: "/catalog/shirts" },
+  { text: "T-shirts", link: "/catalog/shirts" },
   { text: "handbags", link: "/catalog/handbags" },
-  { text: "hoodie", link: '/catalog/hoodie' },
+  { text: "hoodies", link: '/catalog/hoodies' },
   // { text: "sale", link: "/catalog/sale" },
 ];

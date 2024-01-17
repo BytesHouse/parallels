@@ -49,10 +49,10 @@ export const Footer = () => {
           Parallels
           <InstagramIcon />
         </Link>
-        <div className="flex gap-[15px] md:justify-end">
+        {/* <div className="flex gap-[15px] md:justify-end">
         יוספטל 6 קריית מוצקין 
           <IconAddress />
-        </div>
+        </div> */}
       </div>
     </footer>
   );

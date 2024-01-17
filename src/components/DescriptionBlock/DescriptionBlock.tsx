@@ -24,10 +24,10 @@ export const DescriptionBlock = ({ item }: any) => {
       <h1 className="text-[16px] font-[500]">{name}</h1>
       <Price price={price} />
       <Counter counter={counter} set={setCounter} max={count} />
-      <Colors color={color} setColor={setColor} />
-      <Sizes size={size} setSize={setSize} type={categoryId} />
+      <Colors item={item} color={color} setColor={setColor} />
+      <Sizes  item={item} size={size} setSize={setSize} type={categoryId} />
       <BuyNowBlock color={color} size={size} item={item} counter={counter} />
-      <Description />
+      <Description item={item} />
       <ReviewsList />
     </div>
   );
@@ -90,60 +90,36 @@ const ButtonPrimary = ({ icon, callback }: ButtonPrimaryProps) => {
 
 // Colors
 const Colors = (props: any) => {
-  const { color, setColor } = props;
+  const { color, setColor, item } = props;
   return (
     <div className="flex flex-col gap-[15px]">
       <h3 className="text-[14px] font-[400]">colors</h3>
       <ul className="flex gap-[5px]">
-        <li
-          onClick={() => setColor("white")}
+        {item.color.map((col: any) => {
+          console.log(col);
+          return <li
+          style={{backgroundColor: col}}
+          key={col}
+          onClick={() => setColor(col)}
           className={`${
-            color === "white" && "border-yellow-500"
-          } w-[30px] h-[30px] bg-white rounded-full border border-gray-300 cursor-pointer`}
-        ></li>
-        <li
-          onClick={() => setColor("black")}
-          className={`${
-            color === "black" && "border-yellow-500 border"
-          } w-[30px] h-[30px] bg-black rounded-full cursor-pointer`}
-        ></li>
-        {/* <li className="w-[30px] h-[30px] bg-[#656B73] rounded-full"></li> */}
-        {/* <li className="w-[30px] h-[30px] bg-[#468578] rounded-full"></li> */}
+            color === col && "border-yellow-500"
+          } w-[30px] h-[30px] rounded-full border border-gray-300 cursor-pointer`}
+        ></li>})}
       </ul>
     </div>
   );
 };
 
-const shirtsArr = [
-  { size: "", sizeL: "XS" },
-  { size: "", sizeL: "S" },
-  { size: "", sizeL: "M" },
-  { size: "", sizeL: "L" },
-  { size: "", sizeL: "XL" },
-];
-const shortsArr = [
-  { size: "", sizeL: "S" },
-  { size: "", sizeL: "M" },
-  { size: "", sizeL: "L" },
-  { size: "", sizeL: "XL" },
-];
-
-const Sizes = ({ type, size, setSize }: any) => {
-  const tmp =
-    type === 0
-      ? shirtsArr
-      : type === 1 || type === 4 || type === 3
-      ? shortsArr
-      : [{ size: "", sizeL: "L" }];
+const Sizes = ({ type, size, setSize, item }: any) => {
   return (
     <div className="flex flex-col gap-[15px]">
       <h3 className="text-[14px] font-[400]">Size</h3>
       <div className="grid grid-cols-5 grid-rows-2 gap-[10px]">
-        {tmp.map((item) => (
+        {item.size.map((item: any) => (
           <Size
-            key={item.sizeL + " " + 1}
-            size={item.size}
-            sizeL={item.sizeL}
+            key={item + " " + 1}
+            // size={item}
+            sizeL={item}
             state={size}
             callback={setSize}
           />
@@ -161,7 +137,7 @@ const Size = ({
   state,
   callback,
 }: {
-  size: string;
+  size?: string;
   sizeL: string;
   state: string;
   callback: any;
@@ -284,7 +260,15 @@ const HeartIcon = () => {
 };
 
 //DesctiptionBlock
-const Description = () => {
+const Description = ({item}: {item: any}) => {
+  const descriptionList = [
+    // { type: "Vendor code", value: "50845125" },
+    { type: "Bag Type", value: "Tote" },
+    { type: "Color", value: item.color.map((item: any) => item) },
+    { type: "Material", value: "Canvas" },
+    { type: "Style", value: "Casual" },
+    { type: "Hardness", value: "Soft" },
+  ];
   return (
     <div>
       <h3 className="text-[14px] font-[400]">More details</h3>
@@ -295,7 +279,7 @@ const Description = () => {
               <p className="w-[33%] text-[14px] font-[300] text-[#B3B3B3] normal-case">
                 {type}
               </p>
-              <p className="text-[14px] font-[300] normal-case">{value}</p>
+              <p className="text-[14px] font-[300] capitalize">{value}</p>
             </li>
           );
         })}
@@ -309,14 +293,7 @@ interface IdescriptItem {
   value: string;
 }
 
-const descriptionList = [
-  // { type: "Vendor code", value: "50845125" },
-  { type: "Bag Type", value: "Tote" },
-  { type: "Color", value: "Black, Gray, Beige, White" },
-  { type: "Material", value: "Canvas" },
-  { type: "Style", value: "Casual" },
-  { type: "Hardness", value: "Soft" },
-];
+
 
 //Reviews Block
 const ReviewsList = () => {

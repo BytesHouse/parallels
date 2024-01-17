@@ -13,14 +13,14 @@ interface ProdCardSecondaryProps {
   prodId?: string | number
 }
 
-export const ProdCardSecondary = ({ link, title = 'Contrast Bootcut Sweatpants', price, prodId }: ProdCardSecondaryProps) => {
+export const ProdCardSecondary = ({ link, title, price, prodId }: ProdCardSecondaryProps) => {
   const pathname = usePathname();
   const locale = pathname.split('/')[1]
   return (
     <li className="uppercase flex flex-col min-w-[300px] max-w-[100%] gap-[15px]">
       <Link href={`/${locale}/product/${prodId}`}>
         <div className="relative">
-          <Image className="w-full h-full" width={1000} height={1000} src={link || mock} alt="mock" />
+          <Image className="w-full max-h-[400px]" width={450} height={450} src={link || mock} alt="mock" />
           {/* <LabelSale /> */}
         </div>
         <div className="flex flex-col gap-[10px]">

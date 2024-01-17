@@ -8,8 +8,8 @@ import { usePathname } from 'next/navigation'
 export const ProdCardPrimary = ({image, name, id}: {image: string, name: string, id: number}) => {
     const pathname = usePathname();
     const locale = pathname.split('/')[1]
-    return <li className="uppercase flex flex-col gap-[15px] min-w-[300px] max-w-[300px]">
-        <Image width={1000} height={1000} src={image || mock} alt="mock" />
+    return <li className=" uppercase flex flex-col gap-[15px] min-w-[300px] max-w-[300px]">
+        <Image className='max-h-[400px]' width={450} height={450} src={image || mock} alt="mock" />
         <div className="flex flex-col gap-[10px]">
             <p className="text-[12px] font-[300]">10+ new styles</p>
             <p className="text-[16px] font-[500]">{name}</p>
