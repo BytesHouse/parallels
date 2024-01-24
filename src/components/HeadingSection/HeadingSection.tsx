@@ -23,7 +23,7 @@ export const HeadingSection = ({ text, id }: HeadingSection) => {
       };
     return <div className="flex items-center justify-between container m-auto px-[15px] md:px-[0]">
         <p className="text-[24px] font-[300]">{text}</p>
-        <div className="flex gap-[10px]">
+        <div className="hidden md:flex gap-[10px]">
             <div onClick={scrollLeft}><NavBtn isLeft /></div>
             <div onClick={scrollRight}><NavBtn /></div>
         </div>

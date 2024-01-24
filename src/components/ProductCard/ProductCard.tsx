@@ -14,8 +14,8 @@ async function getData(id: number) {
     <div className="container px-[15px] md:px-[0] mx-auto mb-[50px]">
       {/* <Breadcrumbs /> */}
       <div className="grid grid-cols-1 md:grid-cols-[2fr_410px] gap-[50px]">
-        <div className="mt-[15px] w-[100wv] overflow-x-auto xl:w-[100%] flex relative z-0 gap-[50px]">
-          {res?.imageUrl.map(item => <Image key={item} width={1000} height={10} className="w-full" alt="logo" src={item} />)}
+        <div className="mt-[15px] w-[100wv] overflow-x-auto xl:w-[100%] flex md:grid md:grid-cols-2 relative z-0 gap-[50px]">
+          {res?.imageUrl.map(item => <Image key={item} width={1000} height={10} className="w-full md:h-[768px]" alt="logo" src={item} />)}
         </div>
         <DescriptionBlock item={res} />
       </div>

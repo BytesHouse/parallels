@@ -19,7 +19,7 @@ export const SectionNew = async () => {
             <HeadingSection text="WHAT'S NEW" id={"news_container"} />
         <div id="news_container" className="overflow-x-scroll customScroll">
 
-            <ul className="w-max flex px-[15px] md:px-[0] container mx-auto gap-[30px]">
+            <ul className="w-max flex flex-col md:flex-row px-[15px] md:px-[0] container mx-auto gap-[30px]">
                 {res.map(item => <ProdCardPrimary key={item.name} image={item.imageUrl[1]} name={item.name} id={item.id} />)}
             </ul>
             </div>

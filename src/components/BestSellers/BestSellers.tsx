@@ -10,7 +10,7 @@ async function getData() {
 
 export  const BestSellers = async ({products}: any) => {
     const res = await getData()
-    return <section className="bg-[#F2F2F2] overflow-x-scroll w-full py-[50px] flex flex-col gap-[50px] ">
+    return <section className="bg-[#F2F2F2] overflow-x-scroll w-full py-[50px] hidden md:flex md:flex-col gap-[50px] ">
         <div className="container mx-auto flex flex-col gap-[50px] md:px-[20px]">
         <HeadingSection text="HOT OFFERS" id={"hot_offers"} />
         <div id="hot_offers" className="overflow-x-scroll customScroll">
