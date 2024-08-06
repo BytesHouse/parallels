@@ -65,19 +65,19 @@ const CartItem = ({ callback, item }: { callback?: any; item?: any }) => {
           />
         </Link>
         <div className="flex flex-col md:flex-row gap-[10px] md:gap-[50px] md:items-center">
-          <div>
+          <div className="flex-shrink-0 md:w-[100px]">
             <p className="text-[12px] font-[300] uppercase">New season</p>
             <p className="text-[16px] font-[500] uppercase mt-[10px]">
               {name} <span className="text-gray-400">{color}</span>
             </p>
           </div>
           <div>₪{(price * count).toFixed(1)}</div>
-          <div className="flex gap-[10px] md:block">
-            <div>
+          <div className="flex gap-[10px] md:flex-col">
+            <div className="flex-1">
               <p className="text-[12px] font-[300]">Size</p>
               <p className="text-[12px] font-[500]">{size}</p>
             </div>
-            <div>
+            <div className="flex-1">
               <p className="text-[12px] font-[300]">Quantity</p>
               <p className="text-[12px] font-[500]">{count}</p>
             </div>
